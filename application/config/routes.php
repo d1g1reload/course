@@ -65,3 +65,16 @@ $route['page/account/register'] = 'Course/Account/register';
 $route['page/course/detail/(:any)'] = 'Course/Course/course_detail/$1';
 $route['page/student/lecture/(:any)'] = 'Course/Student/student_lecture/$1';
 $route['page/student/lecture/(:any)/(:any)'] = 'Course/Student/student_lecture_play/$1/$2';
+
+
+/**
+ * backend
+ */
+$route['admin'] = 'Admin/Main';
+$route['login'] = 'Admin/Main/login';
+$route['dashboard'] = 'Admin/Dashboard';
+$route['courselist'] = 'Admin/Course';
+$route['course/preview'] = 'Admin/Course/preview';
+
+//external
+$route['youtube/data'] = 'Course/Course/youtube';
