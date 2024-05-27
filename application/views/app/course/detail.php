@@ -4,10 +4,10 @@
          <div class="row align-items-center">
              <div class="col-xl-7 col-lg-7 col-md-12">
                  <div>
-                     <h1 class="text-white display-4 fw-semibold">Getting Started with JavaScript</h1>
+                     <h1 class="text-white display-4 fw-semibold"><?php echo strtoupper($course->course_title) ?></M>
+                     </h1>
                      <p class="text-white mb-6 lead">
-                         JavaScript is the popular programming language which powers web pages and web
-                         applications. This course will get you started coding in JavaScript.
+                         <?php echo $course->course_description ?>
                      </p>
                      <div class="d-flex align-items-center">
                          <a href="#" class="bookmark text-white">
@@ -95,7 +95,7 @@
                                      <li class="list-group-item px-0 pt-0">
                                          <!-- Toggle -->
                                          <a class="h4 mb-0 d-flex align-items-center active" href="#" aria-expanded="true" aria-controls="courseTwo">
-                                             <div class="me-auto"><?php echo $course->course_name ?></div>
+                                             <div class="me-auto"><?php echo $course->course_title ?></div>
 
                                          </a>
                                          <!-- Row -->
@@ -110,7 +110,7 @@
                                                                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
                                                                  </svg>
                                                              </span>
-                                                             <span><?php echo $item->course_detail_name ?></span>
+                                                             <span><?php echo $item->course_detail_title ?></span>
                                                          </div>
                                                          <div class="text-truncate">
                                                              <span>1m 7s</span>
@@ -446,8 +446,8 @@
                  <!-- Card -->
                  <div class="card mb-3 mb-4">
                      <div class="p-1">
-                         <div class="d-flex justify-content-center align-items-center rounded border-white border rounded-3 bg-cover" style="background-image: url(<?php echo base_url() ?>assets/images/course/course-javascript.jpg); height: 210px">
-                             <a class="glightbox icon-shape rounded-circle btn-play icon-xl" href="https://www.youtube.com/watch?v=Nfzi7034Kbg">
+                         <div class="d-flex justify-content-center align-items-center rounded border-white border rounded-3 bg-cover" style="background-image: url(<?php echo base_url() ?>assets/course/<?php echo $course->course_banner ?>); height: 210px">
+                             <a class="glightbox icon-shape rounded-circle btn-play icon-xl" target="_blank" href="https://www.youtube.com/watch?v=<?php echo $course->course_preview ?>">
                                  <i class="fe fe-play"></i>
                              </a>
                          </div>
@@ -456,8 +456,8 @@
                      <div class="card-body">
                          <!-- Price single page -->
                          <div class="mb-3">
-                             <span class="text-dark fw-bold h2">$600</span>
-                             <del class="fs-4">$750</del>
+                             <span class="text-dark fw-bold h2">Rp. <?php echo number_format($discount) ?></span>
+                             <del class="fs-4">Rp. <?php echo number_format($course->course_price) ?></del>
                          </div>
                          <div class="d-grid">
                              <a href="#" class="btn bg-custom text-white mb-2">Beli Kelas</a>

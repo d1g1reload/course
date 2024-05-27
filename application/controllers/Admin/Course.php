@@ -1,30 +1,118 @@
 <?php
-
+date_default_timezone_set('Asia/Jakarta');
 class Course extends CI_Controller
 {
 
     function index()
     {
-
+        $data['course'] = $this->Course_m->get_course();
         $data['content_admin'] = "app/backend/course/list";
+        $this->load->view('layouts/panel', $data);
+    }
+
+
+    function page_create()
+    {
+        $data['content_admin'] = "app/backend/course/create";
+        $this->load->view('layouts/panel', $data);
+    }
+
+    function course_create()
+    {
+        $title = $this->input->post('course_title', TRUE);
+        $description = $this->input->post('course_description', TRUE);
+        $created = date('Y-m-d h:i:s');
+
+        if ($_FILES and $_FILES['course_banner']['name']) {
+            $config = array(
+                'upload_path' => './assets/course/',
+                'allowed_types' => 'jpeg|jpg|png|JPG|PNG|JPEG',
+                'max_size' => 10000,
+                'encrypt_name' => true,
+                'remove_spaces' => true
+            );
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('course_banner')) {
+                $error = $this->upload->display_errors();
+                $this->session->set_flashdata('error', $error);
+                redirect('courselist');
+            } else {
+                $file = $this->upload->data();
+                $product_course = array(
+                    'course_banner'     => $file['file_name'],
+                    'course_title'      => $title,
+                    'course_description' => $description,
+                    'course_create'     => $created,
+
+                );
+
+                if ($product_course) {
+                    $this->Course_m->course_add($product_course);
+                    $this->session->set_flashdata('success', 'Create Course Success.');
+                    redirect('courselist');
+                } else {
+
+                    $this->session->set_flashdata('error', 'Create Course Failed.');
+                    redirect('courselist');
+                }
+            }
+        }
+    }
+
+    function page_detail($id)
+    {
+        $data['course'] = $this->Course_m->get_course_id($id);
+        $data['course_detail'] = $this->Course_m->get_course_detail($id);
+        $data['content_admin'] = "app/backend/course/detail";
         $this->load->view('layouts/panel', $data);
     }
 
     function preview()
     {
+
         $this->load->library('Course_lib');
+
+        $course_id = $this->input->post('course_id', true);
         $video_code = $this->input->post('video_val', true);
-        $apikey = "AIzaSyAaw-003dXTKM1R0ahWTxESbUVMu6EhQqM";
-        $youtube = new Madcoda\Youtube\Youtube(array('key' => $apikey));
-        $video = $youtube->getVideoInfo($video_code);
+
+        $video = $this->course_lib->youtube_api($video_code);
         $json = json_encode($video, JSON_UNESCAPED_SLASHES);
         $decode = json_decode($json);
         $data['youtube_code'] = $decode->id;
         $data['youtube_title'] = $decode->snippet->title;
         $data['youtube_duration'] = $this->course_lib->convert_time_youtube($decode->contentDetails->duration);
-
+        $data['course_id'] = $course_id;
 
         $data['content_admin'] = "app/backend/course/preview";
         $this->load->view('layouts/panel', $data);
+    }
+
+    function course_submit()
+    {
+        $content_id             = $this->input->post('course_id', true);
+        $content_title          = $this->input->post('course_detail_title', true);
+        $content_duration       = $this->input->post('course_detail_duration', true);
+        $content_video_code     = $this->input->post('course_detail_video_code', true);
+        $content_description    = $this->input->post('course_detail_description', true);
+        $content_created        = date('Y-m-d h:i:s');
+
+        $content_data = array(
+            'course_id' => $content_id,
+            'course_detail_title' => $content_title,
+            'course_detail_duration' => $content_duration,
+            'course_detail_video_code' => $content_video_code,
+            'course_detail_description' => $content_description,
+            'course_detail_created' => $content_created,
+        );
+
+        if ($content_data) {
+            $this->Course_m->course_add_detail($content_data);
+            $this->session->set_flashdata('success', 'Create Content Detail Success.');
+            redirect('admin/page/course/detail/' . $content_id);
+        } else {
+            $this->session->set_flashdata('error', 'Create Content Detail Failed.');
+            redirect('admin/page/course/detail/' . $content_id);
+        }
     }
 }

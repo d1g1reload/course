@@ -72,7 +72,7 @@
                         <a href="<?php echo base_url('page/course/detail/' . $item->id) ?>"><img src="<?php echo base_url() ?>assets/images/course/course-react.jpg" alt="course" class="card-img-top" /></a>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2"><a href="<?php echo base_url('page/course/detail/' . $item->id) ?>" class="text-inherit"><?php echo $item->course_name ?></a></h4>
+                            <h4 class="mb-2 text-truncate-line-2"><a href="<?php echo base_url('page/course/detail/' . $item->id) ?>" class="text-inherit"><?php echo $item->course_title ?></a></h4>
                             <!-- List -->
                             <ul class="mb-3 list-inline">
                                 <li class="list-inline-item">

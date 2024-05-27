@@ -6,7 +6,7 @@
 </style>
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-lg-3 col-md-3 col-xl-2 px-sm-2 px-0 bg-primary">
+        <div class="col-lg-3 col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #092F51;">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="<?php echo base_url('page/student/lecture/' . $course->id) ?>" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">Materi Kelas </span>
@@ -15,7 +15,7 @@
                     <?php foreach ($lesson as $item) : ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url('page/student/lecture/' . $item->course_id . '/' . $item->detail_id) ?>" class="nav-link text-white align-middle px-0">
-                                <i class="fs-4 bi-chevron-right"></i> <span class="ms-1 d-none d-sm-inline"><?php echo $item->course_detail_name ?></span>
+                                <i class="fs-4 bi-chevron-right"></i> <span class="ms-1 d-none d-sm-inline"><?php echo $item->course_detail_title ?></span>
                             </a>
                         </li>
                     <?php endforeach; ?>
@@ -33,9 +33,9 @@
 
             <div class="row  mt-3">
                 <div class="col-12">
-                    <h4><?php echo $detail_lesson->course_detail_name ?></h4>
+                    <h4><?php echo $detail_lesson->course_detail_title ?></h4>
                     <div class="yt">
-                        <iframe width="100%" height="500" src="//www.youtube.com/embed/zB4I68XVPzQ"></iframe>
+                        <iframe width="100%" height="500" src="//www.youtube.com/embed/<?php echo $detail_lesson->course_detail_video_code ?>"></iframe>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Diskusi Materi <?php echo $detail_lesson->course_detail_name ?></h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Diskusi Materi <?php echo $detail_lesson->course_detail_title ?></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

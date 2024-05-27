@@ -74,7 +74,11 @@ $route['admin'] = 'Admin/Main';
 $route['login'] = 'Admin/Main/login';
 $route['dashboard'] = 'Admin/Dashboard';
 $route['courselist'] = 'Admin/Course';
+$route['page/course/create'] = 'Admin/Course/page_create';
+$route['admin/page/course/detail/(:any)'] = 'Admin/Course/page_detail/$1';
+$route['course/submit'] = 'Admin/Course/course_create';
 $route['course/preview'] = 'Admin/Course/preview';
+$route['course/content/submit'] = 'Admin/Course/course_submit';
 
 //external
 $route['youtube/data'] = 'Course/Course/youtube';

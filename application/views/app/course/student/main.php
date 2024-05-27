@@ -15,7 +15,7 @@
                     <?php foreach ($lesson as $item) : ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url('page/student/lecture/' . $item->course_id . '/' . $item->detail_id) ?>" class="nav-link text-white align-middle px-0">
-                                <i class="fs-4 bi-chevron-right"></i> <span class="ms-1 d-none d-sm-inline"><?php echo $item->course_detail_name ?></span>
+                                <i class="fs-4 bi-chevron-right"></i> <span class="ms-1 d-none d-sm-inline"><?php echo $item->course_detail_title ?></span>
                             </a>
                         </li>
                     <?php endforeach; ?>

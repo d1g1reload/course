@@ -14,4 +14,12 @@ class Course_lib
 
         return $youtube_time;
     }
+
+    function youtube_api($video_code){
+        $apikey = "AIzaSyAaw-003dXTKM1R0ahWTxESbUVMu6EhQqM";
+        $youtube = new Madcoda\Youtube\Youtube(array('key' => $apikey));
+        $video = $youtube->getVideoInfo($video_code);
+
+        return $video;
+    }
 }

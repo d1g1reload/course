@@ -1,38 +1,78 @@
 <div class="row mt-3">
     <div class="col-md-12">
         <h1 class="text-center">Course</h1>
+        <?php if ($this->session->flashdata('error')) : ?>
+            <div class="alert alert-danger" role="alert">
+                <strong><?php echo $this->session->flashdata('error'); ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        <?php endif; ?>
+
+        <?php if ($this->session->flashdata('success')) : ?>
+            <div class="alert alert-success" role="alert">
+                <strong><?php echo $this->session->flashdata('success'); ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="col-md-2">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <a href="<?php echo base_url('page/course/create') ?>" class="btn btn-primary">
             + Course
-        </button>
+        </a>
+    </div>
+</div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="<?php echo base_url('course/preview') ?>" method="post">
-                        <div class="modal-body">
-                            <input type="text" class="form-control" name="video_val" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Cek Data</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="row mt-3">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Course Title</th>
+                    <th>Course Status</th>
+                    <th>Course Created</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($course as $item) {
+                    if ($item->course_status == "0") {
+                        $status = '<div class="badge badge-danger">UnPublish</div>';
+                    } elseif ($item->course_status == "1") {
+                        $status = '<div class="badge badge-primary">Publish</div>';
+                    }
+                ?>
+                    <tr>
+                        <td><?php echo strtoupper($item->course_title) ?></td>
+                        <td><?php echo $status ?></td>
+                        <td><?php echo date('Y-m-d h:i:s', strtotime($item->course_create)) ?></td>
+                        <td>
+                            <ul class="navbar-nav">
 
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                        Action Course
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="<?php echo base_url('admin/page/course/detail/' . $item->id) ?>">Detail</a>
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 </div>
