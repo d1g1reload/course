@@ -154,7 +154,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#produkTable').DataTable();
+            $('#courseTable').DataTable();
         });
     </script>
 </body>

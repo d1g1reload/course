@@ -12,6 +12,7 @@ class Course extends CI_Controller
         $data['course'] = $this->Course_m->get_course_id($id);
         $data['course_detail'] = $this->Course_m->get_course_detail($id);
         $data['discount'] = $final_price;
+        $data['total_video'] = $this->Course_m->total_video_course_by_id($id);
         $data['content'] = "app/course/detail";
         $this->load->view('layouts/main', $data);
     }

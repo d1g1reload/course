@@ -86,7 +86,7 @@
 
 <div class="row mt-2">
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" id="courseTable">
             <thead>
                 <tr>
                     <th>Video Name</th>
