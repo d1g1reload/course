@@ -22,6 +22,7 @@ class User_m extends CI_Model
                 return $account;
             }
         }
+        // return $account;
     }
 
     function check_email($email)

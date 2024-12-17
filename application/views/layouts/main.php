@@ -109,11 +109,11 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="#">Dashboard</a>
+                            <a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
                         </li>
 
                         <li>
-                            <a class="dropdown-item text-danger" href="#">Logout</a>
+                            <a class="dropdown-item text-danger" href="<?php echo base_url('logout') ?>">Logout</a>
                         </li>
 
                     </ul>
@@ -131,6 +131,18 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="row g-0 border-top py-2">
+                <div class="col-4">
+                    <h3>PT.DIGITAL RELOAD INDONESIA</h3>
+                    <address>
+                        Lapangan Sakura,Cikaret Kabupaten Bogor
+                        <br>
+                        (08777) 2717 491 (Chat Only)
+                        <br>
+                        dgireloadpay@gmail.com (Support)
+                    </address>
+                </div>
+            </div>
             <div class="row align-items-center g-0 border-top py-2">
                 <!-- Desc -->
                 <div class="col-md-6 col-12 text-center text-md-start">
@@ -141,7 +153,7 @@
                                 document.getElementById("copyright").appendChild(document.createTextNode(new Date().getFullYear()));
                             </script>
                         </span>
-                        Geeks. All Rights Reserved.
+                        All Rights Reserved.
                     </span>
                 </div>
                 <!-- Links -->

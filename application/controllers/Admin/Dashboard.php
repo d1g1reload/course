@@ -7,12 +7,12 @@ class Dashboard extends CI_Controller
     {
 
         parent::__construct();
-        // if (!$this->session->userdata('is_loggedin')) {
+        if (!$this->session->userdata('is_loggedin')) {
 
-        //     $this->session->set_flashdata('failed', 'Silahkan login terlebih dahulu');
+            $this->session->set_flashdata('failed', 'Silahkan login terlebih dahulu');
 
-        //     redirect('admin');
-        // }
+            redirect('admin');
+        }
     }
 
     function index()

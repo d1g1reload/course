@@ -46,7 +46,7 @@
             <tbody>
                 <?php foreach ($course as $item) {
                     if ($item->course_status == "0") {
-                        $status = '<div class="badge badge-danger">UnPublish</div>';
+                        $status = '<div class="badge badge-danger">Draft</div>';
                     } elseif ($item->course_status == "1") {
                         $status = '<div class="badge badge-primary">Publish</div>';
                     }

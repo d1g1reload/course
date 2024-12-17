@@ -72,6 +72,7 @@ $route['page/student/lecture/(:any)/(:any)'] = 'Course/Student/student_lecture_p
  */
 $route['admin'] = 'Admin/Main';
 $route['login'] = 'Admin/Main/login';
+$route['logout'] = 'Admin/Main/logout';
 $route['dashboard'] = 'Admin/Dashboard';
 $route['courselist'] = 'Admin/Course';
 $route['page/course/create'] = 'Admin/Course/page_create';

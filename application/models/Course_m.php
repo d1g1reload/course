@@ -5,18 +5,36 @@ class Course_m extends CI_Model
 
     function get_course()
     {
+
         return $this->db->get('tm_course')->result();
     }
 
+    function count_course()
+    {
+        $q = "SELECT COUNT(*) as 'jum' FROM tm_course ";
+        return $this->db->query($q)->row();
+    }
+
+    function get_course_slug($slug)
+    {
+
+        return $this->db->where('course_slug', $slug)->get('tm_course')->row();
+    }
+
+
     function get_course_id($id)
     {
-        return $this->db->where('id', $id)->get('tm_course')->row();
+        $q = "SELECT c.id,c.user_id,c.course_banner,c.course_title,c.course_description,c.course_price,
+            c.course_discount,c.course_status,c.course_category,cl.level_name
+            FROM tm_course AS c
+            INNER JOIN tm_course_level AS cl ON cl.id  = c.course_level WHERE c.id = '$id'";
+        return $this->db->query($q)->row();
     }
 
     function get_course_detail($id)
     {
-        $this->db->select('c.id,c.course_title,c_detail.id as detail_id,c_detail.course_id ,
-        c_detail.course_detail_title,c_detail.course_detail_video_code');
+        $this->db->select('c.id,c.course_title,c_detail.id as detail_id,c_detail.course_id,
+        c_detail.course_detail_title,c_detail.course_detail_video_code,c_detail.course_detail_duration');
         $this->db->from('tm_course_detail as c_detail');
         $this->db->join('tm_course as c', ' c.id = c_detail.course_id', 'inner');
         $this->db->where('c_detail.course_id', $id);

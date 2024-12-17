@@ -3,6 +3,19 @@ date_default_timezone_set('Asia/Jakarta');
 class Course extends CI_Controller
 {
 
+    function __construct()
+    {
+
+        parent::__construct();
+        if (!$this->session->userdata('is_loggedin')) {
+
+            $this->session->set_flashdata('failed', 'Silahkan login terlebih dahulu');
+
+            redirect('admin');
+        }
+    }
+
+
     function index()
     {
         $data['course'] = $this->Course_m->get_course();
@@ -19,8 +32,13 @@ class Course extends CI_Controller
 
     function course_create()
     {
+        $user_id = $this->session->userdata('user_id');
         $title = $this->input->post('course_title', TRUE);
+        $course_price = $this->input->post('course_price', TRUE);
+        $course_discount = $this->input->post('course_discount', TRUE);
         $description = $this->input->post('course_description', TRUE);
+        $course_status = $this->input->post('course_status', TRUE);
+        $course_category = $this->input->post('course_category', TRUE);
         $created = date('Y-m-d h:i:s');
 
         if ($_FILES and $_FILES['course_banner']['name']) {
@@ -38,15 +56,24 @@ class Course extends CI_Controller
                 $this->session->set_flashdata('error', $error);
                 redirect('courselist');
             } else {
+                if ($course_category == 0) {
+                    $course_price = 0;
+                }
                 $file = $this->upload->data();
                 $product_course = array(
-                    'course_banner'     => $file['file_name'],
-                    'course_title'      => $title,
+                    'user_id'            => $user_id,
+                    'course_banner'      => $file['file_name'],
+                    'course_title'       => $title,
+                    'course_slug'        => slug($title),
+                    'course_price'       => $course_price,
+                    'course_discount'    => $course_discount,
                     'course_description' => $description,
-                    'course_create'     => $created,
+                    'course_category'    => $course_category,
+                    'course_status'      => $course_status,
+                    'course_create'      => $created,
 
                 );
-
+                // var_dump($product_course);
                 if ($product_course) {
                     $this->Course_m->course_add($product_course);
                     $this->session->set_flashdata('success', 'Create Course Success.');
