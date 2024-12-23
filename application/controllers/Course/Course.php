@@ -2,9 +2,7 @@
 
 class Course extends CI_Controller
 {
-
-
-    function course_detail($id = null)
+    public function course_detail($id = null)
     {
         $duration = $this->Course_m->get_course_detail($id);
         $totalDurationInSeconds = 0;

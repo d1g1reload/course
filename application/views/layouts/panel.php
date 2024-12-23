@@ -19,6 +19,7 @@
     <link href="<?php echo base_url() ?>assets/backend/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/backend/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/backend/css/custom.css" rel="stylesheet">
 </head>
@@ -151,13 +152,14 @@
 
     <!-- Page level plugins -->
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
     <script src="<?php echo base_url() ?>assets/backend/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>assets/backend/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script>
         $(document).ready(function() {
             $('#produkTable').DataTable();
+            $('#summernote').summernote();
         });
     </script>
 </body>

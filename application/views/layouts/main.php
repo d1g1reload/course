@@ -24,7 +24,7 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/theme.min.css" />
 
-    <link rel="canonical" href="https://geeksui.codescandy.com/geeks/index.html" />
+    <!-- <link rel="canonical" href="https://geeksui.codescandy.com/geeks/index.html" /> -->
     <link href="<?php echo base_url() ?>assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet" />
     <title>Geeks - Bootstrap 5 Template</title>
 </head>
@@ -131,18 +131,6 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="row g-0 border-top py-2">
-                <div class="col-4">
-                    <h3>PT.DIGITAL RELOAD INDONESIA</h3>
-                    <address>
-                        Lapangan Sakura,Cikaret Kabupaten Bogor
-                        <br>
-                        (08777) 2717 491 (Chat Only)
-                        <br>
-                        dgireloadpay@gmail.com (Support)
-                    </address>
-                </div>
-            </div>
             <div class="row align-items-center g-0 border-top py-2">
                 <!-- Desc -->
                 <div class="col-md-6 col-12 text-center text-md-start">
@@ -159,10 +147,11 @@
                 <!-- Links -->
                 <div class="col-12 col-md-6">
                     <nav class="nav nav-footer justify-content-center justify-content-md-end">
-                        <a class="nav-link active ps-0" href="#!">Privacy</a>
+                        <a class="nav-link" href="<?php echo base_url('page/about') ?>">About</a>
+                        <a class="nav-link" href="#!">Privacy</a>
                         <a class="nav-link" href="#!">Terms</a>
                         <a class="nav-link" href="#!">Feedback</a>
-                        <a class="nav-link" href="#!">Support</a>
+                        <a class="nav-link" href="<?php echo base_url('page/about'); ?>">Support</a>
                     </nav>
                 </div>
             </div>

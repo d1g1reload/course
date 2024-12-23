@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="">Course Description</label>
-                <textarea name="course_description" class="form-control" cols="10" rows="10" required></textarea>
+                <textarea id="summernote" name="course_description" class="form-control" cols="10" rows="10" required></textarea>
             </div>
 
             <div class="form-group">
@@ -51,6 +51,15 @@
                         <input type="number" class="form-control" name="course_discount" value="0">
                     </div>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label>Level Kursus</label>
+                <select name="course_level" class="form-control" id="">
+                    <?php foreach($level as $val) : ?>
+                        <option value="<?php echo $val->id ?>"><?php echo $val->level_name ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
 

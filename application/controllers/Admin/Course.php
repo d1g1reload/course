@@ -1,9 +1,9 @@
 <?php
+
 date_default_timezone_set('Asia/Jakarta');
 class Course extends CI_Controller
 {
-
-    function __construct()
+    public function __construct()
     {
 
         parent::__construct();
@@ -16,7 +16,7 @@ class Course extends CI_Controller
     }
 
 
-    function index()
+    public function index()
     {
         $data['course'] = $this->Course_m->get_course();
         $data['content_admin'] = "app/backend/course/list";
@@ -24,21 +24,23 @@ class Course extends CI_Controller
     }
 
 
-    function page_create()
+    public function page_create()
     {
+        $data['level'] = $this->Course_m->get_level_course();
         $data['content_admin'] = "app/backend/course/create";
         $this->load->view('layouts/panel', $data);
     }
 
-    function course_create()
+    public function course_create()
     {
         $user_id = $this->session->userdata('user_id');
-        $title = $this->input->post('course_title', TRUE);
-        $course_price = $this->input->post('course_price', TRUE);
-        $course_discount = $this->input->post('course_discount', TRUE);
-        $description = $this->input->post('course_description', TRUE);
-        $course_status = $this->input->post('course_status', TRUE);
-        $course_category = $this->input->post('course_category', TRUE);
+        $title = $this->input->post('course_title', true);
+        $course_price = $this->input->post('course_price', true);
+        $course_discount = $this->input->post('course_discount', true);
+        $description = $this->input->post('course_description', true);
+        $course_status = $this->input->post('course_status', true);
+        $course_category = $this->input->post('course_category', true);
+        $course_level = $this->input->post('course_level', true);
         $created = date('Y-m-d h:i:s');
 
         if ($_FILES and $_FILES['course_banner']['name']) {
@@ -70,6 +72,7 @@ class Course extends CI_Controller
                     'course_description' => $description,
                     'course_category'    => $course_category,
                     'course_status'      => $course_status,
+                    'course_level'       => $course_level,
                     'course_create'      => $created,
 
                 );
@@ -87,7 +90,7 @@ class Course extends CI_Controller
         }
     }
 
-    function page_detail($id)
+    public function page_detail($id)
     {
         $data['course'] = $this->Course_m->get_course_id($id);
         $data['course_detail'] = $this->Course_m->get_course_detail($id);
@@ -95,7 +98,7 @@ class Course extends CI_Controller
         $this->load->view('layouts/panel', $data);
     }
 
-    function preview()
+    public function preview()
     {
 
         $this->load->library('Course_lib');
@@ -115,7 +118,7 @@ class Course extends CI_Controller
         $this->load->view('layouts/panel', $data);
     }
 
-    function course_submit()
+    public function course_submit()
     {
         $content_id             = $this->input->post('course_id', true);
         $content_title          = $this->input->post('course_detail_title', true);
