@@ -11,14 +11,20 @@
                             Sudah punya akun?
                             <a href="<?php echo base_url('page/account') ?>" class="ms-1">Login</a>
                         </span>
+                        <?php if ($this->session->flashdata('failed')) : ?>
+                            <div class="alert alert-danger" role="alert">
+                                <strong><?php echo $this->session->flashdata('failed'); ?></strong>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
                     <!-- Form -->
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" method="post" action="<?php echo base_url('post/register') ?>" novalidate>
                         <!-- Username -->
                         <div class="mb-3">
-                            <label for="username" class="form-label">User Name</label>
-                            <input type="text" id="username" class="form-control" name="username" placeholder="User Name" required>
-                            <div class="invalid-feedback">Please enter valid username.</div>
+                            <label for="fullname" class="form-label">Nama Lengkap</label>
+                            <input type="text" id="fullname" class="form-control" name="fullname" placeholder="Nama Lengkap" required>
+                            <div class="invalid-feedback">Please enter valid fullname.</div>
                         </div>
                         <!-- Email -->
                         <div class="mb-3">
@@ -32,20 +38,16 @@
                             <input type="password" id="password" class="form-control" name="password" placeholder="**************" required>
                             <div class="invalid-feedback">Please enter valid password.</div>
                         </div>
-                        <!-- Checkbox -->
                         <div class="mb-3">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="agreeCheck" required>
-                                <label class="form-check-label" for="agreeCheck">
-                                    <span>
-                                        I agree to the
-                                        <a href="terms-condition-page.html">Terms of Service</a>
-                                        and
-                                        <a href="terms-condition-page.html">Privacy Policy.</a>
-                                    </span>
-                                </label>
-                                <div class="invalid-feedback">You must agree before submitting.</div>
-                            </div>
+                            <label class="form-label">Nomor WA</label>
+                            <input type="number" class="form-control" name="phone" placeholder="Nomor whatsapp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roles" class="form-label">Tipe User</label>
+                            <select name="role_id" class="form-control">
+                                <option value="2">Instruktur</option>
+                                <option value="3">Student</option>
+                            </select>
                         </div>
                         <div>
                             <!-- Button -->

@@ -4,6 +4,9 @@ class Course extends CI_Controller
 {
     public function course_detail($id = null)
     {
+        $user_id = $this->session->userdata('user_id');
+        $data['is_purchased'] = false;
+
         $duration = $this->Course_m->get_course_detail($id);
         $totalDurationInSeconds = 0;
 
@@ -29,7 +32,7 @@ class Course extends CI_Controller
         $data['course_detail'] = $this->Course_m->get_course_detail($id);
         $data['discount'] = $final_price;
         $data['totalDuration'] = $totalDuration;
-
+        $data['is_purchased'] = $this->Course_m->is_purchase($user_id, $id);
         $data['content'] = "app/course/detail";
         $this->load->view('layouts/main', $data);
     }

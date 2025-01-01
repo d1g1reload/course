@@ -23,23 +23,14 @@
     </div>
 </div>
 
-<div class="row mt-3">
-    <div class="col-md-2">
-        <!-- Button trigger modal -->
-        <a href="<?php echo base_url('page/course/create') ?>" class="btn btn-primary">
-            + Course
-        </a>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
+<div class="card mb-4">
+    <!-- Table -->
+    <div class="table-responsive overflow-y-hidden">
+        <table class="table mb-0 text-nowrap table-hover table-centered text-nowrap">
+            <thead class="table-light">
                 <tr>
-                    <th>Course Title</th>
-                    <th>Course Status</th>
-                    <th>Course Created</th>
+                    <th>Courses</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -52,26 +43,60 @@
                     }
                 ?>
                     <tr>
-                        <td><?php echo strtoupper($item->course_title) ?></td>
-                        <td><?php echo $status ?></td>
-                        <td><?php echo date('Y-m-d h:i:s', strtotime($item->course_create)) ?></td>
                         <td>
-                            <ul class="navbar-nav">
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                        Action Course
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <a href="#">
+                                        <img src="<?php echo base_url() ?>assets/course/<?php echo $item->course_banner ?>" alt="course" class="rounded img-4by3-lg">
                                     </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?php echo base_url('admin/page/course/detail/' . $item->id) ?>">Detail</a>
-                                        <a class="dropdown-item" href="#">Edit</a>
-                                        <a class="dropdown-item" href="#">Delete</a>
-                                    </div>
-                                </li>
-                            </ul>
+                                </div>
+                                <div class="ms-3">
+                                    <h4 class="mb-1 h5">
+                                        <a href="#" class="text-inherit"><?php echo strtoupper($item->course_title) ?></a>
+                                    </h4>
+                                    <ul class="list-inline fs-6 mb-0">
+                                        <li class="list-inline-item"><?php echo date('Y-m-d h:i:s', strtotime($item->course_create)) ?></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-success"><?php echo $status ?></span>
+                        </td>
+
+                        <td>
+                            <span class="dropdown dropstart">
+                                <a
+                                    class="btn-icon btn btn-ghost btn-sm rounded-circle"
+                                    href="#"
+                                    role="button"
+                                    id="courseDropdown"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-offset="-20,20"
+                                    aria-expanded="false">
+                                    <i class="fe fe-more-vertical"></i>
+                                </a>
+                                <span class="dropdown-menu" aria-labelledby="courseDropdown">
+                                    <span class="dropdown-header">Setting</span>
+                                    <a class="dropdown-item" href="<?php echo base_url('admin/page/course/detail/' . $item->course_id) ?>">
+                                        <i class="fe fe-edit dropdown-item-icon"></i>
+                                        Detail Materi
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fe fe-edit dropdown-item-icon"></i>
+                                        Edit
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fe fe-trash dropdown-item-icon"></i>
+                                        Remove
+                                    </a>
+                                </span>
+                            </span>
                         </td>
                     </tr>
                 <?php } ?>
+
             </tbody>
         </table>
     </div>

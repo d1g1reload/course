@@ -124,8 +124,26 @@
                              <?php endif; ?>
                          </div>
                          <div class="d-grid">
-                             <a href="#" class="btn bg-custom text-white mb-2">Beli Kelas</a>
-                             <a href="<?php echo base_url('page/student/lecture/' . $course->id) ?>" class="btn btn-outline-custom">Masuk Kelas</a>
+                             <?php if ($this->session->userdata('is_loggedin')) { ?>
+                                 <?php if ($is_purchased): ?>
+                                     <!-- Tampilkan tombol Beli Kursus jika belum dibeli -->
+                                     <a href="<?php echo site_url('dashboard'); ?>" class="btn btn-primary">
+                                         Dashboard
+                                     </a>
+
+                                 <?php else: ?>
+                                     <form action="<?php echo base_url('course/page/purchase/buy') ?>" method="post">
+                                         <!-- send data -->
+                                         <input type="hidden" name="course_id" value="<?php echo $course->id ?>">
+                                         <div class="d-grid gap-2">
+                                             <button type="submit" class="btn bg-custom text-white mb-2">Beli Kelas</button>
+                                         </div>
+                                     </form>
+                                 <?php endif; ?>
+                             <?php } else { ?>
+                                 <a href="<?php echo base_url('page/account') ?>" class="btn bg-custom text-white mb-2">Silahkan Login untuk beli kelas.</a>
+
+                             <?php } ?>
                          </div>
                      </div>
                  </div>

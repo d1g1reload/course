@@ -18,7 +18,8 @@ class Course extends CI_Controller
 
     public function index()
     {
-        $data['course'] = $this->Course_m->get_course();
+        $user_id = $this->session->userdata('user_id');
+        $data['course'] = $this->Course_m->get_course($user_id);
         $data['content_admin'] = "app/backend/course/list";
         $this->load->view('layouts/panel', $data);
     }
@@ -92,6 +93,9 @@ class Course extends CI_Controller
 
     public function page_detail($id)
     {
+
+
+
         $data['course'] = $this->Course_m->get_course_id($id);
         $data['course_detail'] = $this->Course_m->get_course_detail($id);
         $data['content_admin'] = "app/backend/course/detail";
@@ -105,22 +109,30 @@ class Course extends CI_Controller
 
         $course_id = $this->input->post('course_id', true);
         $video_code = $this->input->post('video_val', true);
+        $order_value = $this->input->post('order_value');
 
         $video = $this->course_lib->youtube_api($video_code);
         $json = json_encode($video, JSON_UNESCAPED_SLASHES);
         $decode = json_decode($json);
-        $data['youtube_code'] = $decode->id;
-        $data['youtube_title'] = $decode->snippet->title;
-        $data['youtube_duration'] = $this->course_lib->convert_time_youtube($decode->contentDetails->duration);
-        $data['course_id'] = $course_id;
 
-        $data['content_admin'] = "app/backend/course/preview";
-        $this->load->view('layouts/panel', $data);
+        if ($video_code != $decode->id) {
+            $this->session->set_flashdata('failed', 'Kode video youtube yang anda masukan salah, silahkan coba lagi.');
+            redirect('admin/page/course/detail/' . $course_id);
+        } else {
+            $data['youtube_code'] = $decode->id;
+            $data['youtube_title'] = $decode->snippet->title;
+            $data['youtube_duration'] = $this->course_lib->convert_time_youtube($decode->contentDetails->duration);
+            $data['course_id'] = $course_id;
+            $data['course_order'] = $order_value;
+            $data['content_admin'] = "app/backend/course/preview";
+            $this->load->view('layouts/panel', $data);
+        }
     }
 
     public function course_submit()
     {
         $content_id             = $this->input->post('course_id', true);
+        $course_order           = $this->input->post('course_order');
         $content_title          = $this->input->post('course_detail_title', true);
         $content_duration       = $this->input->post('course_detail_duration', true);
         $content_video_code     = $this->input->post('course_detail_video_code', true);
@@ -129,6 +141,7 @@ class Course extends CI_Controller
 
         $content_data = array(
             'course_id' => $content_id,
+            'course_order' => $course_order,
             'course_detail_title' => $content_title,
             'course_detail_duration' => $content_duration,
             'course_detail_video_code' => $content_video_code,

@@ -55,6 +55,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
 $route['page/about'] = 'Main/about';
+$route['page/otp'] = 'Main/otp';
+$route['post/register'] = 'Main/register';
+$route['verfiy/otp'] = 'Main/verify_otp';
 /**
  * navbar page
  */
@@ -65,6 +68,7 @@ $route['page/account/register'] = 'Course/Account/register';
  * student page
  */
 $route['page/course/detail/(:any)'] = 'Course/Course/course_detail/$1';
+$route['page/student/lecture/list'] = 'Course/Student';
 $route['page/student/lecture/(:any)'] = 'Course/Student/student_lecture/$1';
 $route['page/student/lecture/(:any)/(:any)'] = 'Course/Student/student_lecture_play/$1/$2';
 
@@ -72,7 +76,6 @@ $route['page/student/lecture/(:any)/(:any)'] = 'Course/Student/student_lecture_p
 /**
  * backend
  */
-$route['admin'] = 'Admin/Main';
 $route['login'] = 'Admin/Main/login';
 $route['logout'] = 'Admin/Main/logout';
 $route['dashboard'] = 'Admin/Dashboard';
@@ -82,6 +85,22 @@ $route['admin/page/course/detail/(:any)'] = 'Admin/Course/page_detail/$1';
 $route['course/submit'] = 'Admin/Course/course_create';
 $route['course/preview'] = 'Admin/Course/preview';
 $route['course/content/submit'] = 'Admin/Course/course_submit';
+
+/**
+ * purchase
+ */
+$route['course/purchase'] = 'Admin/Purchase/create';
+$route['course/page/purchase/buy'] = 'Admin/Purchase/page_purchase';
+$route['course/purchase/list'] = 'Admin/Purchase/transactions';
+$route['course/purchase/detail/(:any)'] = 'Admin/Purchase/detail_transaction/$1';
+$route['course/purchase/approve'] = 'Admin/Purchase/approve_user_course';
+
+
+
+/**
+ * mentor
+ */
+$route['mentor'] = 'Admin/User/mentor';
 
 //external
 $route['youtube/data'] = 'Course/Course/youtube';

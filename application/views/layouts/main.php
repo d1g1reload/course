@@ -34,57 +34,8 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid px-0">
-                <a class="navbar-brand" href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>assets/images/brand/logo/logo.svg" alt="Geeks" /></a>
-                <!-- Mobile view nav wrap -->
-                <div class="ms-auto d-flex align-items-center order-lg-3">
+                <a class="navbar-brand" href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>assets/main/logo.png" alt="Eduhost" width="50px" height="38px" /></a>
 
-                    <ul class="navbar-nav navbar-right-wrap ms-2 flex-row d-none d-md-block">
-                        <li class="dropdown d-inline-block stopevent position-static">
-                            <a class="btn btn-light btn-icon rounded-circle indicator indicator-primary" href="#" role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fe fe-bell"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg position-absolute mx-3 my-5" aria-labelledby="dropdownNotificationSecond">
-                                <div>
-                                    <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
-                                        <span class="h5 mb-0">Notifications</span>
-
-                                    </div>
-                                    <ul class="list-group list-group-flush" style="height: 300px" data-simplebar>
-                                        <li class="list-group-item bg-light">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <a class="text-body" href="#">
-                                                        <div class="d-flex">
-                                                            <img src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle" />
-                                                            <div class="ms-3">
-                                                                <h5 class="fw-bold mb-1">Kristin Watson:</h5>
-                                                                <p class="mb-3 text-body">Krisitn Watsan like your comment on course Javascript Introduction!</p>
-                                                                <span class="fs-6">
-                                                                    <span>
-                                                                        <span class="fe fe-thumbs-up text-success me-1"></span>
-                                                                        10-10-2024,
-                                                                    </span>
-                                                                    <span class="ms-1">09:00</span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                                    <div class="border-top px-3 pt-3 pb-0">
-                                        <a href="./pages/notification-history.html" class="text-link fw-semibold">Lihat Semua Notifikasi</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-
-                    </ul>
-                </div>
                 <div>
                     <!-- Button -->
                     <button class="navbar-toggler collapsed ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,18 +55,20 @@
                             <a class="dropdown-item" href="#">Kelas</a>
                         </li>
 
-                        <li>
-                            <a class="dropdown-item" href="<?php echo base_url('page/account') ?>">Akun</a>
-                        </li>
 
-                        <li>
-                            <a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
-                        </li>
+                        <?php if ($this->session->userdata('is_loggedin')) { ?>
+                            <li>
+                                <a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item text-danger" href="<?php echo base_url('logout') ?>">Logout</a>
-                        </li>
-
+                            <li>
+                                <a class="dropdown-item text-danger" href="<?php echo base_url('logout') ?>">Logout</a>
+                            </li>
+                        <?php } else { ?>
+                            <li>
+                                <a class="dropdown-item" href="<?php echo base_url('page/account') ?>">Akun</a>
+                            </li>
+                        <?php } ?>
                     </ul>
 
                 </div>
@@ -128,12 +81,90 @@
 
     </main>
     <!-- Footer -->
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer bg-dark-stable py-8">
         <div class="container">
-            <div class="row align-items-center g-0 border-top py-2">
+            <div class="row gy-6 gy-xl-0 pb-8">
+                <div class="col-xl-3 col-lg-12 col-md-6 col-12">
+                    <div class="d-flex flex-column gap-4">
+                        <div>
+                            <b>PT.DIGITAL RELOAD INDONESIA</b>
+                        </div>
+                        <p class="mb-0">Eduhost Platform Kursus Online yang disusun untuk Pemula.</p>
+
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-3 col-6">
+                    <div class="d-flex flex-column gap-3">
+                        <span class="text-white-stable">Company</span>
+                        <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
+                            <li>
+                                <a href="#!" class="nav-link">Tentang Kami</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-3 col-6">
+                    <div class="d-flex flex-column gap-3">
+                        <span class="text-white-stable">Community</span>
+                        <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
+                            <li>
+                                <a href="#!" class="nav-link">Support</a>
+                            </li>
+
+                            <li>
+                                <a href="#!" class="nav-link">Blog</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-3 col-12">
+                    <div class="d-flex flex-column gap-3">
+                        <span class="text-white-stable">Teaching</span>
+                        <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
+                            <li>
+                                <a href="#!" class="nav-link">Daftar Instruktur</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="nav-link">Dokumentasi</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-12">
+                    <div class="d-flex flex-column gap-5">
+                        <div class="d-flex flex-column gap-3">
+                            <span class="text-white-stable">Contact</span>
+                            <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
+                                <li>
+                                    Wa Support:
+                                    <span class="fw-semibold">08777 2717 491</span>
+                                </li>
+
+                                <li>
+                                    Email:
+                                    <span class="fw-semibold">websitecourse.ar@gmail.com</span>
+                                </li>
+                                <li>
+                                    Alamat:
+                                    <span class="fw-semibold">
+                                        Cikaret, Ciomas Kabupaten Bogor.
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="d-flex flex-row gap-2">
+                            <a href="#"><img src="./assets/images/svg/appstore.svg" alt="" class="img-fluid" /></a>
+                            <a href="#"><img src="./assets/images/svg/playstore.svg" alt="" class="img-fluid" /></a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center g-0 border-top border-gray-800 pt-3 flex-column gap-1 flex-lg-row gap-lg-0">
                 <!-- Desc -->
-                <div class="col-md-6 col-12 text-center text-md-start">
+                <div class="col-lg-6 col-12 text-center text-md-start">
                     <span>
                         ©
                         <span id="copyright">
@@ -141,22 +172,20 @@
                                 document.getElementById("copyright").appendChild(document.createTextNode(new Date().getFullYear()));
                             </script>
                         </span>
-                        All Rights Reserved.
+                        Digital Reload Indonesia
                     </span>
                 </div>
                 <!-- Links -->
-                <div class="col-12 col-md-6">
-                    <nav class="nav nav-footer justify-content-center justify-content-md-end">
-                        <a class="nav-link" href="<?php echo base_url('page/about') ?>">About</a>
-                        <a class="nav-link" href="#!">Privacy</a>
-                        <a class="nav-link" href="#!">Terms</a>
-                        <a class="nav-link" href="#!">Feedback</a>
-                        <a class="nav-link" href="<?php echo base_url('page/about'); ?>">Support</a>
+                <div class="col-12 col-lg-6">
+                    <nav class="nav nav-footer justify-content-center justify-content-md-start justify-content-lg-end">
+                        <a class="nav-link active" href="#!">Terms of use</a>
+                        <a class="nav-link" href="#!">Privacy policy</a>
                     </nav>
                 </div>
             </div>
         </div>
     </footer>
+
 
     <!-- Scroll top -->
     <div class="btn-scroll-top">
@@ -166,6 +195,8 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
     <!-- Libs JS -->
     <script src="<?php echo base_url() ?>assets/libs/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="<?php echo base_url() ?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -179,6 +210,16 @@
     <script src="<?php echo base_url() ?>assets/libs/tippy.js/dist/tippy-bundle.umd.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/vendors/tnsSlider.js"></script>
     <script src="<?php echo base_url() ?>assets/js/vendors/tooltip.js"></script>
+    <script>
+        $('#buy-save').click(function() {
+            console.log('work')
+            // Menutup modal
+            $('#buy-course').modal('hide');
+
+            // Men-submit form
+            $('form').submit();
+        });
+    </script>
 </body>
 
 </html>

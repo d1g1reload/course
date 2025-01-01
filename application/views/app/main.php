@@ -24,10 +24,9 @@
         <div class="row align-items-center g-0">
             <div class="col-xl-12 col-lg-12 col-md-12 mt-5 mb-5">
                 <div class="py-7 py-lg-0">
-                    <h1 class="text-white display-4 fw-bold">Welcome to Geeks UI Learning Application</h1>
-                    <p class="text-white-50 mb-4 lead">Hand-picked Instructor and expertly crafted courses, designed for the modern students and entrepreneur.</p>
-                    <a href="pages/course-filter-list.html" class="btn btn-dark">Kelas</a>
-                    <a href="pages/sign-in.html" class="btn btn-white">Daftar Instruktur?</a>
+                    <h1 class="text-white display-4 fw-bold">Selamat datang di Eduhost</h1>
+                    <p class="text-white-50 mb-4 lead">Platform Kursus Online untuk Pemula.</p>
+
                 </div>
             </div>
 
@@ -45,8 +44,8 @@
                         <i class="fe fe-video"></i>
                     </span>
                     <div class="ms-3">
-                        <h4 class="mb-0 fw-semibold">30,000 online courses</h4>
-                        <p class="mb-0">Enjoy a variety of fresh topics</p>
+                        <h4 class="mb-0 fw-semibold">Video Premium</h4>
+                        <p class="mb-0">Memberikan kualitas terbaik.</p>
                     </div>
                 </div>
             </div>
@@ -57,8 +56,8 @@
                         <i class="fe fe-users"></i>
                     </span>
                     <div class="ms-3">
-                        <h4 class="mb-0 fw-semibold">Expert instruction</h4>
-                        <p class="mb-0">Find the right instructor for you</p>
+                        <h4 class="mb-0 fw-semibold">Instruktur Berpengalaman</h4>
+                        <p class="mb-0">Pilih instruktur yang sesuai untuk anda.</p>
                     </div>
                 </div>
             </div>
@@ -69,8 +68,8 @@
                         <i class="fe fe-clock"></i>
                     </span>
                     <div class="ms-3">
-                        <h4 class="mb-0 fw-semibold">Lifetime access</h4>
-                        <p class="mb-0">Learn on your schedule</p>
+                        <h4 class="mb-0 fw-semibold">Akses Kursus Selamanya</h4>
+                        <p class="mb-0">Nikmati pengalaman belajar tanpa masa tenggang.</p>
                     </div>
                 </div>
             </div>
@@ -150,11 +149,8 @@
                                 <!-- Card Footer -->
                                 <div class="card-footer">
                                     <div class="row align-items-center g-0">
-                                        <div class="col-auto">
-                                            <img src="<?php echo base_url() ?>assets/course/avatar/avatar-1.jpg" class="rounded-circle avatar-xs" alt="avatar" />
-                                        </div>
                                         <div class="col ms-2">
-                                            <span>Morris Mccoy</span>
+                                            <span><?php echo $item->fullname ?></span>
                                         </div>
                                         <div class="col-auto">
                                             <a href="#" class="text-reset bookmark">
