@@ -74,4 +74,18 @@ class User_m extends CI_Model
         $query = $this->db->get('otp'); // Asumsikan tabel OTP bernama 'otps'
         return $query->num_rows() > 0; // Jika ada, return true
     }
+
+    /**
+     * update user
+     */
+
+    function get_profile_user($user_id)
+    {
+        return $this->db->where('id', $user_id)->get('users')->row();
+    }
+
+    function update_profile_user($user_id, $data)
+    {
+        return $this->db->where('id', $user_id)->update('users', $data);
+    }
 }

@@ -101,6 +101,8 @@ $route['course/purchase/approve'] = 'Admin/Purchase/approve_user_course';
  * mentor
  */
 $route['mentor'] = 'Admin/User/mentor';
+$route['user/profile/edit'] = 'Admin/User/page_profile';
+$route['user/profile/update/(:any)'] = 'Admin/User/update_profile/$1';
 
 //external
 $route['youtube/data'] = 'Course/Course/youtube';

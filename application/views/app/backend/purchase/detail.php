@@ -10,7 +10,7 @@
             </div>
             <?php if ($detail->payment_status == 1) { ?>
                 <div>
-                    <a href="#" class="btn btn-dark">Konfirmasi Pembayaran</a>
+                    <a href="https://wa.me/6287772717491" target="_blank" class="btn btn-dark">Konfirmasi Pembayaran</a>
                 </div>
             <?php } elseif ($detail->payment_status == 2) { ?>
                 <div>

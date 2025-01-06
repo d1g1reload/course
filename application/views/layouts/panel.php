@@ -41,7 +41,7 @@
                             <div class="d-flex align-items-end justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                                        <img src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg" class="avatar-xl rounded-circle border border-4 border-white position-relative" alt="avatar" />
+                                        <img src="https://ui-avatars.com/api/?rounded=true&name=<?php echo $this->session->userdata('fullname') ?>" class="avatar-xl rounded-circle border border-4 border-white position-relative" alt="avatar" />
                                         <a href="#" class="position-absolute top-0 end-0" data-bs-toggle="tooltip" data-placement="top" title="Verified">
                                             <img src="<?php echo base_url() ?>assets/images/svg/checked-mark.svg" alt="checked" height="30" width="30" />
                                         </a>
@@ -157,7 +157,7 @@
                                     <ul class="list-unstyled ms-n2 mb-0">
                                         <!-- Nav item -->
                                         <li class="nav-item">
-                                            <a class="nav-link" href="profile-edit.html">
+                                            <a class="nav-link" href="<?php echo base_url('user/profile/edit') ?>">
                                                 <i class="fe fe-settings nav-icon"></i>
                                                 Edit Profile
                                             </a>
@@ -196,7 +196,7 @@
                                 document.getElementById("copyright").appendChild(document.createTextNode(new Date().getFullYear()));
                             </script>
                         </span>
-                        Geeks. All Rights Reserved.
+                        Digital Reload Indonesia. All Rights Reserved.
                     </span>
                 </div>
                 <!-- Links -->
@@ -204,7 +204,6 @@
                     <nav class="nav nav-footer justify-content-center justify-content-md-end">
                         <a class="nav-link active ps-0" href="#!">Privacy</a>
                         <a class="nav-link" href="#!">Terms</a>
-                        <a class="nav-link" href="#!">Feedback</a>
                         <a class="nav-link" href="#!">Support</a>
                     </nav>
                 </div>
