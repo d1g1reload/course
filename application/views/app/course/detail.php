@@ -122,10 +122,22 @@
                      <div class="card-body">
                          <!-- Price single page -->
                          <div class="mb-3">
-                             <span class="text-dark fw-bold h2"> <?php echo ($course->course_price == 0) ? 'Gratis' : 'Rp. ' . number_format($discount) ?></span>
-                             <?php if ($discount > 0) : ?>
-                                 <del class="fs-4">Rp. <?php echo number_format($course->course_price) ?></del>
-                             <?php endif; ?>
+                             <?php
+
+                                if ($course->course_price > 0) {
+                                    if ($course->course_discount > 0) {
+                                        $total_discount = ($course->course_price / 100) * $course->course_discount;
+                                        $final_price = $course->course_price - $total_discount;
+                                ?>
+                                     <span class="text-dark fw-bold">Rp. <?php echo number_format($final_price) ?></span> <del class="fs-4">Rp. <?php echo number_format($course->course_price) ?></del>
+                                 <?php } else { ?>
+                                     <span class="text-dark fw-bold">Rp. <?php echo number_format($course->course_price) ?></span>
+                                 <?php }
+                                } else { ?>
+                                 <span class="text-dark fw-bold">
+                                     Gratis
+                                 </span>
+                             <?php } ?>
                          </div>
                          <div class="d-grid">
                              <?php if ($this->session->userdata('is_loggedin')) { ?>
