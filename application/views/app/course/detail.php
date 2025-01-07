@@ -1,3 +1,19 @@
+ <style>
+     .scrollable {
+
+         /* Lebar elemen */
+         height: 600px;
+         /* Tinggi elemen */
+         overflow-y: scroll;
+         /* Tambahkan scroll secara vertikal */
+         /* border: 1px solid #ccc; */
+         /* Opsional: untuk memberikan batas */
+         padding: 10px;
+         /* Opsional: untuk memberikan jarak di dalam elemen */
+         background-color: rgb(249, 249, 252);
+         /* Opsional: warna latar */
+     }
+ </style>
  <!-- Page header -->
  <section class="pt-lg-8 pb-8 bg-custom">
      <div class="container pb-lg-8">
@@ -58,7 +74,7 @@
                                          </a>
                                          <!-- Row -->
                                          <!-- Collapse -->
-                                         <div class="collapse show" id="courseTwo" data-bs-parent="#courseAccordion">
+                                         <div class="scrollable">
                                              <div class="pt-3 pb-2">
                                                  <?php foreach ($course_detail as $item) : ?>
                                                      <div class="mb-2 d-flex justify-content-between align-items-center text-inherit">
