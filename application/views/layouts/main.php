@@ -26,7 +26,7 @@
 
     <!-- <link rel="canonical" href="https://geeksui.codescandy.com/geeks/index.html" /> -->
     <link href="<?php echo base_url() ?>assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet" />
-    <title>Geeks - Bootstrap 5 Template</title>
+    <title>Eduhost - Digital Reload Indonesia</title>
 </head>
 
 <body>
