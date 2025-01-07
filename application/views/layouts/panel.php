@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/theme.min.css">
     <link href="<?php echo base_url() ?>assets/backend/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="canonical" href="https://geeksui.codescandy.com/geeks/pages/dashboard-instructor.html" />
-    <title>Instructor Dashboard | Geeks - Bootstrap 5 Template</title>
+    <title>Eduhost Dashboard | Digital Reload Indonesia</title>
 </head>
 
 <body>
