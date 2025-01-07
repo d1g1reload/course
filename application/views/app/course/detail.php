@@ -26,11 +26,11 @@
                              <!-- Nav -->
                              <ul class="nav nav-lb-tab" id="tab" role="tablist">
                                  <li class="nav-item">
-                                     <a class="nav-link active" id="table-tab" data-bs-toggle="pill" href="#table" role="tab" aria-controls="table" aria-selected="true">Contents</a>
+                                     <a class="nav-link active" id="table-tab" data-bs-toggle="pill" href="#table" role="tab" aria-controls="table" aria-selected="true">Materi</a>
                                  </li>
                                  <li class="nav-item">
                                      <a class="nav-link" id="description-tab" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">
-                                         Description
+                                         Deskripsi
                                      </a>
                                  </li>
                                  <li class="nav-item">
