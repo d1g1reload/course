@@ -6,21 +6,8 @@
                  <div>
                      <h1 class="text-white display-4 fw-semibold"><?php echo strtoupper($course->course_title) ?></M>
                      </h1>
-                     <p class="text-white mb-6 lead">
-                         <?php echo $course->course_description ?>
-                     </p>
-                     <div class="d-flex align-items-center">
 
-                         <span class="text-warning ms-3">
-                             <i class="fe fe-user"></i>
-                             1200 Enrolled
-                         </span>
 
-                         <span class="text-white ms-4 d-none d-md-block">
-
-                             <span class="align-middle"><i class="fe fe-check"></i> <?= $course->level_name ?></span>
-                         </span>
-                     </div>
                  </div>
              </div>
          </div>
@@ -44,6 +31,11 @@
                                  <li class="nav-item">
                                      <a class="nav-link" id="description-tab" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">
                                          Description
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                     <a class="nav-link" id="about-tab" data-bs-toggle="pill" href="#about" role="tab" aria-controls="about" aria-selected="false">
+                                         Tentang Kursus
                                      </a>
                                  </li>
 
@@ -96,6 +88,18 @@
                                      <h3 class="mb-2">Deskripsi Kursus</h3>
                                      <p>
                                          <?= $course->course_description ?>
+                                     </p>
+
+                                 </div>
+
+                             </div>
+
+                             <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+                                 <!-- Description -->
+                                 <div class="mb-4">
+                                     <h3 class="mb-2">Level Kursus</h3>
+                                     <p>
+                                         <i class="fe fe-check"></i> <?= $course->level_name ?>
                                      </p>
 
                                  </div>
