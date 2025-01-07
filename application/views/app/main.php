@@ -134,14 +134,19 @@
                                     <div class="lh-1 mt-3">
 
                                         <?php
-                                        if ($item->course_discount > 0) {
-                                            $total_discount = ($item->course_price / 100) * $item->course_discount;
-                                            $final_price = $item->course_price - $total_discount;
+
+                                        if ($item->course_price > 0) {
+                                            if ($item->course_discount > 0) {
+                                                $total_discount = ($item->course_price / 100) * $item->course_discount;
+                                                $final_price = $item->course_price - $total_discount;
                                         ?>
-                                            <span class="text-dark fw-bold">Rp. <?php echo number_format($final_price) ?></span> <del class="fs-4">Rp. <?php echo number_format($item->course_price) ?></del>
-                                        <?php } else { ?>
+                                                <span class="text-dark fw-bold">Rp. <?php echo number_format($final_price) ?></span> <del class="fs-4">Rp. <?php echo number_format($item->course_price) ?></del>
+                                            <?php } else { ?>
+                                                <span class="text-dark fw-bold">Rp. <?php echo number_format($item->course_price) ?></span>
+                                            <?php }
+                                        } else { ?>
                                             <span class="text-dark fw-bold">
-                                                <?php echo ($item->course_price == 0) ? 'Gratis' : 'Rp. ' . number_format($final_price) ?>
+                                                Gratis
                                             </span>
                                         <?php } ?>
                                     </div>
