@@ -102,6 +102,6 @@ class Purchase extends CI_Controller
             $this->Purchase_m->save_course_materials_for_user($user_id, $course_id);
         }
         $this->session->set_flashdata('success', 'Berhasil Approve Pembayaran.');
-        redirect('course/purchase/list');
+        redirect('dashboard');
     }
 }

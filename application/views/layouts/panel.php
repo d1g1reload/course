@@ -53,7 +53,7 @@
                                 </div>
                                 <?php if ($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 2): ?>
                                     <div>
-                                        <a href="<?php echo base_url('page/course/create') ?>" class="btn btn-primary d-none d-md-block">Create New Course</a>
+                                        <a href="<?php echo base_url('page/course/create') ?>" class="btn btn-primary d-none d-md-block">Buat Kursus</a>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -146,7 +146,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="<?php echo base_url('course/purchase/list') ?>">
                                                     <i class="fe fe-list nav-icon"></i>
-                                                    Transaksi Saya
+                                                    Transaksi
                                                 </a>
                                             </li>
 
@@ -236,6 +236,7 @@
     <script>
         $(document).ready(function() {
             $('#course').DataTable();
+            $('#table-pending').DataTable();
             $('#detail_kursus').DataTable({
                 "order": [
                     [1, 'desc']

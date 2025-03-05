@@ -42,7 +42,12 @@
         <div class="row mb-5">
             <div class="col-8">
                 <span class="fs-6">INVOICED ID</span>
-                <h6 class="mb-0"><?php echo $detail->transaction_reff ?></h6>
+                <h6 class="mb-0">
+                    <?php echo $detail->transaction_reff ?>
+                    <input type="hidden" value="<?php echo $detail->transaction_reff ?>" id="invIDCopy">
+                    <button onclick="copyText()" class="btn btn-dark btn-sm"><i class="fe fe-copy"></i></button>
+                </h6>
+
             </div>
             <div class="col-4">
                 <span class="fs-6">Tanggal Pemesanan</span>
@@ -99,3 +104,24 @@
         <p class="border-top pt-3 mb-0">Notes: Invoice was created on a computer and is valid without the signature and seal.</p>
     </div>
 </div>
+<script>
+    var inv = document.getElementById("invIDCopy").value
+    console.log(inv)
+
+    function copyText() {
+        var textElement = document.getElementById("invIDCopy    ");
+        textElement.select();
+        textElement.setSelectionRange(0, 99999); // Untuk kompatibilitas di mobile
+
+        try {
+            var successful = document.execCommand("copy");
+            if (successful) {
+                alert("Teks berhasil disalin!");
+            } else {
+                alert("Gagal menyalin teks.");
+            }
+        } catch (err) {
+            alert("Kesalahan: " + err);
+        }
+    }
+</script>

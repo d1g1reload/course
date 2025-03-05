@@ -124,4 +124,19 @@ class Course_m extends CI_Model
             return 0; // Jika tidak ada data
         }
     }
+
+    /**
+     * DASHBOARD STATISTIK
+     */
+
+    function user_count_dashboard()
+    {
+        return $this->db->get('users')->num_rows();
+    }
+
+    function user_buy_count_dashboard()
+    {
+        $this->db->where('payment_status', 2);
+        return $this->db->get('purchases')->num_rows();
+    }
 }

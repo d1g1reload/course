@@ -10,6 +10,15 @@ class Purchase_m extends CI_Model
         INNER JOIN tm_course ON tm_course.id = purchases.purchase_course_id";
         return $this->db->query($q)->result();
     }
+
+    function get_list_payment_pending()
+    {
+        $q = "SELECT * FROM purchases
+        INNER JOIN users ON users.id = purchases.purchase_user_id
+        INNER JOIN tm_course ON tm_course.id = purchases.purchase_course_id
+        where payment_status='1'";
+        return $this->db->query($q)->result();
+    }
     function get_list_invoice($user_id)
     {
         $q = "SELECT * FROM purchases

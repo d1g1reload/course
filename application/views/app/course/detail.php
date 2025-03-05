@@ -164,13 +164,15 @@
                                      </a>
 
                                  <?php else: ?>
-                                     <form action="<?php echo base_url('course/page/purchase/buy') ?>" method="post">
-                                         <!-- send data -->
-                                         <input type="hidden" name="course_id" value="<?php echo $course->id ?>">
-                                         <div class="d-grid gap-2">
-                                             <button type="submit" class="btn bg-custom text-white mb-2">Beli Kelas</button>
-                                         </div>
-                                     </form>
+                                     <?php if ($this->session->userdata('role_id') == 3) : ?>
+                                         <form action="<?php echo base_url('course/page/purchase/buy') ?>" method="post">
+                                             <!-- send data -->
+                                             <input type="hidden" name="course_id" value="<?php echo $course->id ?>">
+                                             <div class="d-grid gap-2">
+                                                 <button type="submit" class="btn bg-custom text-white mb-2">Beli Kelas</button>
+                                             </div>
+                                         </form>
+                                     <?php endif; ?>
                                  <?php endif; ?>
                              <?php } else { ?>
                                  <a href="<?php echo base_url('page/account') ?>" class="btn bg-custom text-white mb-2">Silahkan Login untuk beli kelas.</a>
