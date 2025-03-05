@@ -88,10 +88,10 @@
             <div class="col-md-12 col-12">
                 <?php if ($detail->price != 0) { ?>
                     <h3 class="text-info">Metode Pembayaran</h3>
-                    <h5>BCA - 0916007072 Septiadi Rahman</h5>
-                    <h5>Mandiri - 0916007072 Septiadi Rahman</h5>
-                    <h5>BRI - 0916007072 Septiadi Rahman</h5>
-                    <h5>CIMB - 0916007072 Septiadi Rahman</h5>
+                    <h5>BCA - 0916 0070 72 Septiadi Rahman</h5>
+                    <h5>Mandiri - 133 0016 7966 33 Septiadi Rahman</h5>
+                    <h5>BRI - 7604 0101 7777 508 Septiadi Rahman</h5>
+
                 <?php } else { ?>
                     <div class="alert alert-info" role="alert">
                         Jika kelas yang anda pilih adalah Gratis, Silahkan klik langsung konfirmasi Pembayaran.
@@ -109,7 +109,7 @@
     console.log(inv)
 
     function copyText() {
-        var textElement = document.getElementById("invIDCopy    ");
+        var textElement = document.getElementById("invIDCopy");
         textElement.select();
         textElement.setSelectionRange(0, 99999); // Untuk kompatibilitas di mobile
 
