@@ -109,19 +109,12 @@
     console.log(inv)
 
     function copyText() {
-        var textElement = document.getElementById("invIDCopy");
-        textElement.select();
-        textElement.setSelectionRange(0, 99999); // Untuk kompatibilitas di mobile
+        var inv = document.getElementById("invIDCopy").value; // Ambil nilai dari input hidden
 
-        try {
-            var successful = document.execCommand("copy");
-            if (successful) {
-                alert("Teks berhasil disalin!");
-            } else {
-                alert("Gagal menyalin teks.");
-            }
-        } catch (err) {
-            alert("Kesalahan: " + err);
-        }
+        navigator.clipboard.writeText(inv).then(() => {
+            alert("Teks berhasil disalin!");
+        }).catch(err => {
+            console.error("Gagal menyalin teks: ", err);
+        });
     }
 </script>
