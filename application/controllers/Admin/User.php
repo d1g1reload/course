@@ -10,24 +10,24 @@ class User extends CI_Controller
 
             $this->session->set_flashdata('failed', 'Silahkan login terlebih dahulu');
 
-            redirect('admin');
+            redirect('main');
         }
     }
-    function mentor()
+    public function mentor()
     {
         $data['list'] = $this->User_m->get_mentor();
         $data['content_admin'] = "app/backend/user/mentor";
         $this->load->view('layouts/panel', $data);
     }
 
-    function page_profile()
+    public function page_profile()
     {
         $user_id = $this->session->userdata('user_id');
         $data['user'] = $this->User_m->get_profile_user($user_id);
         $data['content_admin'] = "app/backend/user/edit";
         $this->load->view('layouts/panel', $data);
     }
-    function update_profile($id)
+    public function update_profile($id)
     {
         $fullname = $this->input->post('fullname');
         $email = $this->input->post('email');

@@ -11,7 +11,7 @@ class Course extends CI_Controller
 
             $this->session->set_flashdata('failed', 'Silahkan login terlebih dahulu');
 
-            redirect('admin');
+            redirect('main');
         }
     }
 
