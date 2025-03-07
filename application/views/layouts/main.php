@@ -138,10 +138,6 @@
                         <div class="d-flex flex-column gap-3">
                             <span class="text-white-stable">Contact</span>
                             <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
-                                <li>
-                                    Wa Support:
-                                    <span class="fw-semibold">08777 2717 491</span>
-                                </li>
 
                                 <li>
                                     Email:
