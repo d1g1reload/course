@@ -57,6 +57,7 @@ class Course_m extends CI_Model
         $this->db->from('tm_course_detail as c_detail');
         $this->db->join('tm_course as c', ' c.id = c_detail.course_id', 'inner');
         $this->db->where('c_detail.course_id', $id);
+        $this->db->order_by('c_detail.course_order', 'ASC');
         return $this->db->get()->result();
     }
 
@@ -81,7 +82,7 @@ class Course_m extends CI_Model
     }
 
 
-    function is_purchase($user_id, $course_id)
+    public function is_purchase($user_id, $course_id)
     {
         $this->db->where('enroll_user_id', $user_id);
         $this->db->where('enroll_course_id', $course_id);
@@ -93,7 +94,7 @@ class Course_m extends CI_Model
      * statistik
      */
 
-    function student_buy_completed($user_id)
+    public function student_buy_completed($user_id)
     {
         $this->db->select('COUNT(*) AS total_courses_bought');
         $this->db->from('purchases');
@@ -109,7 +110,7 @@ class Course_m extends CI_Model
         }
     }
 
-    function student_buy_not_completed($user_id)
+    public function student_buy_not_completed($user_id)
     {
         $this->db->select('COUNT(*) AS total_courses_bought');
         $this->db->from('purchases');
@@ -129,12 +130,12 @@ class Course_m extends CI_Model
      * DASHBOARD STATISTIK
      */
 
-    function user_count_dashboard()
+    public function user_count_dashboard()
     {
         return $this->db->get('users')->num_rows();
     }
 
-    function user_buy_count_dashboard()
+    public function user_buy_count_dashboard()
     {
         $this->db->where('payment_status', 2);
         return $this->db->get('purchases')->num_rows();
