@@ -13,7 +13,7 @@ class Student extends CI_Controller
             redirect('admin');
         }
     }
-    function index()
+    public function index()
     {
         $user_id = $this->session->userdata('user_id');
         $data['no_data'] = $this->Student_m->check_class($user_id);
@@ -22,20 +22,22 @@ class Student extends CI_Controller
         $this->load->view('layouts/panel', $data);
     }
 
-    function student_lecture($id)
+    public function student_lecture($id)
     {
         $uri = $this->uri->segment(4);
+        $user_id = $this->session->userdata('user_id');
         $data['course'] = $this->Student_m->get_course_enroll_id($uri);
-        $data['lesson'] = $this->Student_m->get_course_enroll_detail($id);
+        $data['lesson'] = $this->Student_m->get_course_enroll_detail($id, $user_id);
         $data['content'] = "app/course/student/main";
         $this->load->view('layouts/main', $data);
     }
 
-    function student_lecture_play($id, $detail_id)
+    public function student_lecture_play($id, $detail_id)
     {
+        $user_id = $this->session->userdata('user_id');
 
         $data['course'] = $this->Student_m->get_course_enroll_id($id);
-        $data['lesson'] = $this->Student_m->get_course_enroll_detail($id);
+        $data['lesson'] = $this->Student_m->get_course_enroll_detail($id, $user_id);
         $data['detail_lesson'] = $this->Student_m->get_course_enroll_detail_id($id, $detail_id);
         $data['content'] = "app/course/student/playlist";
         $this->load->view('layouts/main', $data);
