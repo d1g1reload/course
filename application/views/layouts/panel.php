@@ -121,7 +121,7 @@
                                             </li>
                                         <?php endif; ?>
                                     </ul>
-                                    <?php if ($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 2): ?>
+                                    <?php if ($this->session->userdata('role_id') == 1): ?>
                                         <span class="navbar-header">Pembayaran</span>
                                         <!-- Nav item -->
                                         <li class="nav-item">
@@ -138,6 +138,20 @@
                                             </a>
                                         </li>
                                     <?php endif; ?>
+
+                                    <?php if ($this->session->userdata('role_id') == 2): ?>
+                                        <span class="navbar-header">Pembayaran</span>
+                                    
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fe fe-dollar-sign nav-icon"></i>
+                                                Request Pencairan
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+
+
                                     <?php if ($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 3): ?>
                                         <!-- Student Menus -->
                                         <span class="navbar-header">Transaksi</span>

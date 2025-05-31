@@ -2,8 +2,7 @@
 
 class Purchase_m extends CI_Model
 {
-
-    function get_list_user_invoice()
+    public function get_list_user_invoice()
     {
         $q = "SELECT * FROM purchases
         INNER JOIN users ON users.id = purchases.purchase_user_id
@@ -11,7 +10,7 @@ class Purchase_m extends CI_Model
         return $this->db->query($q)->result();
     }
 
-    function get_list_payment_pending()
+    public function get_list_payment_pending()
     {
         $q = "SELECT * FROM purchases
         INNER JOIN users ON users.id = purchases.purchase_user_id
@@ -19,7 +18,7 @@ class Purchase_m extends CI_Model
         where payment_status='1'";
         return $this->db->query($q)->result();
     }
-    function get_list_invoice($user_id)
+    public function get_list_invoice($user_id)
     {
         $q = "SELECT * FROM purchases
         INNER JOIN users ON users.id = purchases.purchase_user_id
@@ -28,7 +27,7 @@ class Purchase_m extends CI_Model
         return $this->db->query($q)->result();
     }
 
-    function get_invoice_id($inv_id)
+    public function get_invoice_id($inv_id)
     {
         $q = "SELECT * FROM purchases
         INNER JOIN users ON users.id = purchases.purchase_user_id
@@ -37,24 +36,24 @@ class Purchase_m extends CI_Model
         return $this->db->query($q)->row();
     }
 
-    function create_purchase($data)
+    public function create_purchase($data)
     {
         $this->db->insert('purchases', $data);
         return $this->db->insert_id(); // mengembalikan id
     }
 
-    function update_payment_status($trx_reff, $data)
+    public function update_payment_status($trx_reff, $data)
     {
         $this->db->where('transaction_reff', $trx_reff);
         $this->db->update('purchases', $data);
     }
 
-    function insert_enroll_user($enroll_user)
+    public function insert_enroll_user($enroll_user)
     {
         $this->db->insert('course_enrollments', $enroll_user);
     }
 
-    function save_course_materials_for_user($user_id, $course_id)
+    public function save_course_materials_for_user($user_id, $course_id)
     {
         // Ambil semua materi pelajaran dari kursus
         $this->db->select('id');
@@ -79,9 +78,28 @@ class Purchase_m extends CI_Model
         }
     }
 
-    function update_enroll_user($trx_reff, $update_enroll_user)
+    public function update_enroll_user($trx_reff, $update_enroll_user)
     {
         $this->db->where('enroll_reff', $trx_reff);
         $this->db->update('course_enrollments', $update_enroll_user);
+    }
+
+    /**
+     * saldo instruktur dan user
+     */
+
+    public function get_user_id_instruktur($course_id)
+    {
+        return $this->db->where('id', $course_id)->get('tm_course')->row();
+    }
+
+    public function get_saldo_user($saldo_user_id)
+    {
+        return $this->db->where('id', $saldo_user_id)->get('users')->row();
+    }
+
+    public function update_saldo($course_user_id, $saldo_data)
+    {
+        $this->db->where('id', $course_user_id)->update('users', $saldo_data);
     }
 }

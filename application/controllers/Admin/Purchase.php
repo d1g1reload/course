@@ -1,9 +1,10 @@
 <?php
+
 date_default_timezone_set('Asia/Jakarta');
 
 class Purchase extends CI_Controller
 {
-    function __construct()
+    public function __construct()
     {
 
         parent::__construct();
@@ -14,14 +15,14 @@ class Purchase extends CI_Controller
             redirect('page/account');
         }
     }
-    function page_purchase()
+    public function page_purchase()
     {
         $course_id = $this->input->post('course_id');
         $data['detail'] = $this->Course_m->get_course_id($course_id);
         $data['content'] = "app/backend/purchase/buy";
         $this->load->view('layouts/main', $data);
     }
-    function create()
+    public function create()
     {
         $user_id        = $this->session->userdata('user_id');
         $course_id      = $this->input->post('course_id');
@@ -57,7 +58,7 @@ class Purchase extends CI_Controller
         redirect('course/purchase/list');
     }
 
-    function transactions()
+    public function transactions()
     {
         if ($this->session->userdata('role_id') == 1) {
 
@@ -71,14 +72,14 @@ class Purchase extends CI_Controller
             $this->load->view('layouts/panel', $data);
         }
     }
-    function detail_transaction($inv_id)
+    public function detail_transaction($inv_id)
     {
         $data['detail'] = $this->Purchase_m->get_invoice_id($inv_id);
         $data['content_admin'] = "app/backend/purchase/detail";
         $this->load->view('layouts/panel', $data);
     }
 
-    function approve_user_course()
+    public function approve_user_course()
     {
         $trx_reff = $this->input->post('trx_reff');
         $user_id = $this->input->post('user_id');
@@ -100,6 +101,38 @@ class Purchase extends CI_Controller
 
             // Simpan materi kursus untuk pengguna
             $this->Purchase_m->save_course_materials_for_user($user_id, $course_id);
+
+            //update saldo insturktur
+            $course_data = $this->Purchase_m->get_user_id_instruktur($course_id);
+            $course_price = $course_data->course_price;
+            $course_percent_instruktur = 70;
+            $course_percent_admin = 30;
+
+            $course_instruktur_id = $course_data->user_id;
+            $instruktur_profile = $this->Purchase_m->get_saldo_user($course_instruktur_id);
+            $saldo_instruktur = $instruktur_profile->saldo;
+            $calculate_instruktur = ($course_percent_instruktur / 100) * $course_price;
+            $course_price_instruktur = $calculate_instruktur;
+            $update_saldo_instruktur = $saldo_instruktur + $course_price_instruktur;
+            $update_instruktur = [
+                'saldo' => $update_saldo_instruktur
+            ];
+            $this->Purchase_m->update_saldo($course_instruktur_id, $update_instruktur);
+
+            //update saldo administrator
+            $admin_id = 4;
+            $admin_profile = $this->Purchase_m->get_saldo_user($admin_id);
+            $saldo_admin = $admin_profile->saldo;
+            $calculate_admin = ($course_percent_admin / 100) * $course_price;
+
+            $course_price_admin = $calculate_admin;
+            $update_saldo_admin = $saldo_admin + $course_price_admin;
+            $update_admin = [
+                'saldo' => $update_saldo_admin
+            ];
+            $this->Purchase_m->update_saldo($admin_id, $update_admin);
+
+
         }
         $this->session->set_flashdata('success', 'Berhasil Approve Pembayaran.');
         redirect('dashboard');

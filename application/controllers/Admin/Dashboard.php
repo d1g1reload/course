@@ -3,7 +3,7 @@
 
 class Dashboard extends CI_Controller
 {
-    function __construct()
+    public function __construct()
     {
 
         parent::__construct();
@@ -15,10 +15,12 @@ class Dashboard extends CI_Controller
         }
     }
 
-    function index()
+    public function index()
     {
         $user_id = $this->session->userdata('user_id');
         //admin dan instruktur statistik
+        $saldo = $this->User_m->saldo_user($user_id);
+        $data['user_saldo'] = str_replace(".00", "", $saldo->saldo);
         $data['user_count'] = $this->Course_m->user_count_dashboard();
         $data['user_buy'] = $this->Course_m->user_buy_count_dashboard();
         $data['payment_pending'] = $this->Purchase_m->get_list_payment_pending();
