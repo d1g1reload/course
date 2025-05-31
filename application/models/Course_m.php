@@ -76,6 +76,21 @@ class Course_m extends CI_Model
         $this->db->insert('tm_course', $product_course);
     }
 
+    public function course_update($id, $product_course)
+    {
+        return $this->db->where('id', $id)->update('tm_course', $product_course);
+    }
+
+    public function delete_course($id)
+    {
+        return $this->db->where('id', $id)->delete('tm_course');
+    }
+
+    public function delete_detail_course($id)
+    {
+        $this->db->where('course_id', $id)->delete('tm_course_detail');
+    }
+
     public function course_add_detail($course_data)
     {
         $this->db->insert('tm_course_detail', $course_data);

@@ -93,9 +93,6 @@ class Course extends CI_Controller
 
     public function page_detail($id)
     {
-
-
-
         $data['course'] = $this->Course_m->get_course_id($id);
         $data['course_detail'] = $this->Course_m->get_course_detail($id);
         $data['content_admin'] = "app/backend/course/detail";
@@ -156,6 +153,46 @@ class Course extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Create Content Detail Failed.');
             redirect('admin/page/course/detail/' . $content_id);
+        }
+    }
+
+
+    public function page_edit($id)
+    {
+        $data['course'] = $this->Course_m->get_course_id($id);
+        $data['content_admin'] = "app/backend/course/edit";
+        $this->load->view('layouts/panel', $data);
+    }
+
+    public function course_edit()
+    {
+
+        $title = $this->input->post('course_title', true);
+        $description = $this->input->post('course_description', true);
+        $id = $this->input->post('course_id');
+        $product_course = array(
+            'course_title'       => $title,
+            'course_description' => $description,
+         );
+
+        if ($product_course) {
+            $this->Course_m->course_update($id, $product_course);
+            $this->session->set_flashdata('success', 'Update Course Success.');
+            redirect('courselist');
+        } else {
+
+            $this->session->set_flashdata('error', 'Update Course Failed.');
+            redirect('courselist');
+        }
+    }
+
+    public function course_delete($id)
+    {
+        $deleteCourse = $this->Course_m->delete_course($id);
+        if ($deleteCourse) {
+            $this->Course_m->delete_detail_course($id);
+            $this->session->set_flashdata('success', 'Delete Course Success.');
+            redirect('courselist');
         }
     }
 }

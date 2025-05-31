@@ -236,6 +236,7 @@
     <script>
         $(document).ready(function() {
             $('#course').DataTable();
+            $('#course-list').DataTable();
             $('#table-pending').DataTable();
             $('#detail_kursus').DataTable({
                 "order": [

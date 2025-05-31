@@ -26,7 +26,7 @@
 <div class="card mb-4">
     <!-- Table -->
     <div class="table-responsive overflow-y-hidden">
-        <table class="table mb-0 text-nowrap table-hover table-centered text-nowrap">
+        <table class="table mb-0 text-nowrap table-hover table-centered text-nowrap" id="course-list">
             <thead class="table-light">
                 <tr>
                     <th>Courses</th>
@@ -41,7 +41,7 @@
                     } elseif ($item->course_status == "1") {
                         $status = '<div class="badge badge-primary">Publish</div>';
                     }
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
@@ -83,13 +83,13 @@
                                         <i class="fe fe-edit dropdown-item-icon"></i>
                                         Detail Materi
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="<?php echo base_url('page/course/edit/'.$item->course_id) ?>">
                                         <i class="fe fe-edit dropdown-item-icon"></i>
                                         Edit
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="<?php echo base_url('course/delete/submit/'.$item->course_id) ?>">
                                         <i class="fe fe-trash dropdown-item-icon"></i>
-                                        Remove
+                                        Hapus
                                     </a>
                                 </span>
                             </span>

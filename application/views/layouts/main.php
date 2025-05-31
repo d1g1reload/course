@@ -20,13 +20,21 @@
     <link href="<?php echo base_url() ?>assets/libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link href="<?php echo base_url() ?>assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet" />
     <link href="<?php echo base_url() ?>assets/css/custom.css" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/theme.min.css" />
 
     <!-- <link rel="canonical" href="https://geeksui.codescandy.com/geeks/index.html" /> -->
     <link href="<?php echo base_url() ?>assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet" />
     <title>Eduhost - Digital Reload Indonesia</title>
+    <style>
+        body{
+            font-family: "Quicksand", sans-serif;
+            font-style: normal;
+        }
+    </style>
 </head>
 
 <body>

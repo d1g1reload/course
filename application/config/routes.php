@@ -81,8 +81,11 @@ $route['logout'] = 'Admin/Main/logout';
 $route['dashboard'] = 'Admin/Dashboard';
 $route['courselist'] = 'Admin/Course';
 $route['page/course/create'] = 'Admin/Course/page_create';
+$route['page/course/edit/(:any)'] = 'Admin/Course/page_edit/$1';
 $route['admin/page/course/detail/(:any)'] = 'Admin/Course/page_detail/$1';
 $route['course/submit'] = 'Admin/Course/course_create';
+$route['course/update/submit'] = 'Admin/Course/course_edit';
+$route['course/delete/submit/(:any)'] = 'Admin/Course/course_delete/$1';
 $route['course/preview'] = 'Admin/Course/preview';
 $route['course/content/submit'] = 'Admin/Course/course_submit';
 
