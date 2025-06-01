@@ -102,4 +102,31 @@ class Purchase_m extends CI_Model
     {
         $this->db->where('id', $course_user_id)->update('users', $saldo_data);
     }
+
+    /**
+     * statistik penjualan
+     */
+
+    public function get_statistic_user_buy_course($creator_id)
+    {
+
+
+        $this->db->select('course_enrollments.enroll_course_id,tm_course.course_title,tm_course.course_banner, 
+        COUNT(DISTINCT course_enrollments.enroll_id) as total_pembeli,
+        SUM((tm_course.course_price * purchases.percent_instructor) / 100) as pendapatan_instruktur');
+        $this->db->from('purchases');
+        $this->db->join('tm_course', 'purchases.purchase_course_id = tm_course.id');
+        $this->db->join(
+            'course_enrollments',
+            'purchases.purchase_course_id = course_enrollments.enroll_course_id 
+     AND purchases.purchase_user_id = course_enrollments.enroll_user_id'
+        );
+        $this->db->where('purchases.purchase_creator_id', $creator_id);
+        $this->db->where('course_enrollments.enroll_status', 1);
+        $this->db->group_by('purchases.purchase_course_id');
+        $this->db->order_by('total_pembeli', 'DESC');
+
+        return $this->db->get()->result();
+
+    }
 }

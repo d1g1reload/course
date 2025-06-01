@@ -51,7 +51,7 @@
                                         <p class="mb-0 d-block"><?php echo $this->session->userdata('email') ?></p>
                                     </div>
                                 </div>
-                                <?php if ($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 2): ?>
+                                <?php if ($this->session->userdata('role_id') == 2): ?>
                                     <div>
                                         <a href="<?php echo base_url('page/course/create') ?>" class="btn btn-primary d-none d-md-block">Buat Kursus</a>
                                     </div>
@@ -87,7 +87,7 @@
                                     <ul class="list-unstyled ms-n2">
                                         <!-- Nav item -->
                                         <li class="nav-item">
-                                            <a class="nav-link" target="_blank" href="<?php echo base_url('main') ?>">
+                                            <a class="nav-link" href="<?php echo base_url('main') ?>">
                                                 <i class="fe fe-chrome nav-icon"></i>
                                                 Website
                                             </a>
@@ -102,12 +102,12 @@
                                                 Dashboard
                                             </a>
                                         </li>
-                                        <?php if ($this->session->userdata('role_id') == 1 || $this->session->userdata('role_id') == 2): ?>
+                                        <?php if ($this->session->userdata('role_id') == 2): ?>
                                             <!-- Nav item -->
                                             <li class="nav-item">
                                                 <a class="nav-link" href="<?php echo base_url('courselist') ?>">
                                                     <i class="fe fe-book nav-icon"></i>
-                                                    Kontent Saya
+                                                    Kontent Kursus
                                                 </a>
                                             </li>
                                         <?php endif; ?>
@@ -250,6 +250,7 @@
     <script>
         $(document).ready(function() {
             $('#course').DataTable();
+            $('#statistic-table').DataTable();
             $('#course-list').DataTable();
             $('#table-pending').DataTable();
             $('#detail_kursus').DataTable({

@@ -182,6 +182,8 @@
                              <form action="<?php echo base_url('course/page/purchase/buy') ?>" method="post">
                                  <!-- send data -->
                                  <input type="hidden" name="course_id" value="<?php echo $course->id ?>">
+                                 <input type="hidden" name="course_creator_id" value="<?php echo $course->user_id ?>">
+                                 
                                  <div class="d-grid gap-2">
                                      <button type="submit" class="btn bg-custom text-white mb-2">Beli Kelas</button>
                                  </div>

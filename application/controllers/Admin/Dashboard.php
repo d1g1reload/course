@@ -24,6 +24,9 @@ class Dashboard extends CI_Controller
         $data['user_count'] = $this->Course_m->user_count_dashboard();
         $data['user_buy'] = $this->Course_m->user_buy_count_dashboard();
         $data['payment_pending'] = $this->Purchase_m->get_list_payment_pending();
+        if ($this->session->userdata('role_id') == 2) {
+            $data['course_statistic'] = $this->Purchase_m->get_statistic_user_buy_course($user_id);
+        }
 
 
         //student statistik

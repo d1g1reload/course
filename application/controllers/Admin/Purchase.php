@@ -25,6 +25,7 @@ class Purchase extends CI_Controller
     public function create()
     {
         $user_id        = $this->session->userdata('user_id');
+        $course_creator_id = $this->input->post('course_creator_id');
         $course_id      = $this->input->post('course_id');
         $purchase_date  = date('Y-m-d H:i:s');
         $price          = $this->input->post('price');
@@ -35,6 +36,7 @@ class Purchase extends CI_Controller
         $data = array(
             'purchase_user_id'  => $user_id,
             'purchase_course_id' => $course_id,
+            'purchase_creator_id' => $course_creator_id,
             'purchase_date'     => $purchase_date,
             'price'             => $price,
             'discount'          => $discount,

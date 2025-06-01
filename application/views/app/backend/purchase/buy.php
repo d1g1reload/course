@@ -43,10 +43,10 @@
                                             <span class="badge bg-success rounded-pill"> Rp.
                                                 <?php
                                                 $harga = $detail->course_price;
-                                                $diskon = ($detail->course_discount / 100) * $harga;
-                                                $total = $harga - $diskon;
-                                                echo number_format($total);
-                                                ?>
+                                        $diskon = ($detail->course_discount / 100) * $harga;
+                                        $total = $harga - $diskon;
+                                        echo number_format($total);
+                                        ?>
                                             </span>
                                         </li>
 
@@ -74,7 +74,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <h3>Anda Yakin ingin membeli kursus ini ?</h3>
-                                                <input type="hidden" name="user_id" value="<?php echo $detail->user_id ?>">
+                                                <input type="hidden" name="course_creator_id" value="<?php echo $detail->user_id ?>">
                                                 <input type="hidden" name="course_id" value="<?php echo $detail->id ?>">
                                                 <input type="hidden" name="price" value="<?php echo $detail->course_price ?>">
                                                 <input type="hidden" name="discount" value="<?php echo $detail->course_discount ?>">
