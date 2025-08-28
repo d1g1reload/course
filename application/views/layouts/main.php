@@ -10,7 +10,8 @@
     <meta name="keywords"
         content="belajar membuat website,kursus online, belajar program di bogor, kursus website di bogor,kursus programming untuk pemula" />
     <meta name="author" content="AdiRahman" />
-
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eduhost.my.id/">
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon/favicon.ico" />
 
@@ -30,7 +31,7 @@
 
     <!-- <link rel="canonical" href="https://geeksui.codescandy.com/geeks/index.html" /> -->
     <link href="<?php echo base_url() ?>assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet" />
-    <title>Eduhost - Digital Reload Indonesia</title>
+    <title>Eduhost - Kursus Online Programming Gratis untuk Pemula</title>
     <style>
     body {
         font-family: "Quicksand", sans-serif;
