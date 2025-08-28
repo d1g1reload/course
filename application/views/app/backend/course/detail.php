@@ -95,7 +95,8 @@ if ($course->course_status == "0") {
                                 <tr>
                                     <th>Judul Video</th>
                                     <th>Urutan Video</th>
-                                    <th>Delete</th>
+                                    <th>Edit</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,11 +108,12 @@ if ($course->course_status == "0") {
                                     <td><?php echo strtoupper($val->course_detail_title) ?></td>
                                     <td><?php echo $val->course_order ?></td>
                                     <td>
-                                        <a class="link-danger" href="#">
-                                            <i class="fe fe-trash dropdown-item-icon"></i>
-                                            Remove
+                                        <a class="link-warning" href="#">
+                                            <i class="fe fe-edit dropdown-item-icon"></i>
+                                            Edit
                                         </a>
                                     </td>
+
                                 </tr>
 
                                 <?php } ?>
