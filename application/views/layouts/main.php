@@ -5,9 +5,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="Codescandy" />
+    <meta name="description"
+        content="Belajar pemrograman dari nol di eduhost.my.id. Kursus online gratis HTML, CSS, JavaScript, dan web development lengkap untuk pemula.">
+    <meta name="keywords"
+        content="belajar membuat website,kursus online, belajar program di bogor, kursus website di bogor,kursus programming untuk pemula" />
+    <meta name="author" content="AdiRahman" />
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon/favicon.ico" />
@@ -30,10 +32,10 @@
     <link href="<?php echo base_url() ?>assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet" />
     <title>Eduhost - Digital Reload Indonesia</title>
     <style>
-        body{
-            font-family: "Quicksand", sans-serif;
-            font-style: normal;
-        }
+    body {
+        font-family: "Quicksand", sans-serif;
+        font-style: normal;
+    }
     </style>
 </head>
 
@@ -42,11 +44,15 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid px-0">
-                <a class="navbar-brand" href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>assets/main/logo.png" alt="Eduhost" width="50px" height="38px" /></a>
+                <a class="navbar-brand" href="<?php echo base_url() ?>"><img
+                        src="<?php echo base_url() ?>assets/main/logo.png" alt="Eduhost" width="50px"
+                        height="38px" /></a>
 
                 <div>
                     <!-- Button -->
-                    <button class="navbar-toggler collapsed ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler collapsed ms-2" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <span class="icon-bar top-bar mt-0"></span>
                         <span class="icon-bar middle-bar"></span>
                         <span class="icon-bar bottom-bar"></span>
@@ -65,17 +71,17 @@
 
 
                         <?php if ($this->session->userdata('is_loggedin')) { ?>
-                            <li>
-                                <a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
-                            </li>
+                        <li>
+                            <a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
+                        </li>
 
-                            <li>
-                                <a class="dropdown-item text-danger" href="<?php echo base_url('logout') ?>">Logout</a>
-                            </li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="<?php echo base_url('logout') ?>">Logout</a>
+                        </li>
                         <?php } else { ?>
-                            <li>
-                                <a class="dropdown-item" href="<?php echo base_url('page/account') ?>">Akun</a>
-                            </li>
+                        <li>
+                            <a class="dropdown-item" href="<?php echo base_url('page/account') ?>">Akun</a>
+                        </li>
                         <?php } ?>
                     </ul>
 
@@ -166,14 +172,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row align-items-center g-0 border-top border-gray-800 pt-3 flex-column gap-1 flex-lg-row gap-lg-0">
+            <div
+                class="row align-items-center g-0 border-top border-gray-800 pt-3 flex-column gap-1 flex-lg-row gap-lg-0">
                 <!-- Desc -->
                 <div class="col-lg-6 col-12 text-center text-md-start">
                     <span>
                         ©
                         <span id="copyright">
                             <script>
-                                document.getElementById("copyright").appendChild(document.createTextNode(new Date().getFullYear()));
+                            document.getElementById("copyright").appendChild(document.createTextNode(new Date()
+                                .getFullYear()));
                             </script>
                         </span>
                         Digital Reload Indonesia
@@ -194,12 +202,14 @@
     <!-- Scroll top -->
     <div class="btn-scroll-top">
         <svg class="progress-square svg-content" width="100%" height="100%" viewBox="0 0 40 40">
-            <path d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
+            <path
+                d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
         </svg>
     </div>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     <!-- Libs JS -->
     <script src="<?php echo base_url() ?>assets/libs/@popperjs/core/dist/umd/popper.min.js"></script>
@@ -215,14 +225,14 @@
     <script src="<?php echo base_url() ?>assets/js/vendors/tnsSlider.js"></script>
     <script src="<?php echo base_url() ?>assets/js/vendors/tooltip.js"></script>
     <script>
-        $('#buy-save').click(function() {
-            console.log('work')
-            // Menutup modal
-            $('#buy-course').modal('hide');
+    $('#buy-save').click(function() {
+        console.log('work')
+        // Menutup modal
+        $('#buy-course').modal('hide');
 
-            // Men-submit form
-            $('form').submit();
-        });
+        // Men-submit form
+        $('form').submit();
+    });
     </script>
 </body>
 
