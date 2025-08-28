@@ -95,7 +95,6 @@ if ($course->course_status == "0") {
                                 <tr>
                                     <th>Judul Video</th>
                                     <th>Urutan Video</th>
-                                    <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
