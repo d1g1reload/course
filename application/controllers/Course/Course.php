@@ -4,6 +4,11 @@ class Course extends CI_Controller
 {
     public function course_detail($id = null)
     {
+        $check_id_course = $this->Course_m->get_course_detail($id);
+        if (empty($check_id_course)) {
+            redirect('main');
+        }
+
         $user_id = $this->session->userdata('user_id');
         $data['is_purchased'] = false;
 
