@@ -63,6 +63,7 @@ $route['verfiy/otp'] = 'Main/verify_otp';
  */
 $route['page/account'] = 'Course/Account';
 $route['page/account/register'] = 'Course/Account/register';
+$route['page/account/reset/email'] = 'Course/Account/page_reset';
 
 /**
  * student page
@@ -71,6 +72,11 @@ $route['page/course/detail/(:any)'] = 'Course/Course/course_detail/$1';
 $route['page/student/lecture/list'] = 'Course/Student';
 $route['page/student/lecture/(:any)'] = 'Course/Student/student_lecture/$1';
 $route['page/student/lecture/(:any)/(:any)'] = 'Course/Student/student_lecture_play/$1/$2';
+
+/**
+ * blog
+*/
+$route['page/blog'] = 'Course/Blog/list';
 
 
 /**
@@ -88,6 +94,9 @@ $route['course/update/submit'] = 'Admin/Course/course_edit';
 $route['course/delete/submit/(:any)'] = 'Admin/Course/course_delete/$1';
 $route['course/preview'] = 'Admin/Course/preview';
 $route['course/content/submit'] = 'Admin/Course/course_submit';
+$route['course/blog'] = 'Admin/Course/blog_list';
+$route['course/blog/add'] = 'Admin/Course/blog_add';
+$route['course/blog/submit'] = 'Admin/Course/blog_submit';
 
 /**
  * purchase
