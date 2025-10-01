@@ -18,27 +18,30 @@
                         <div class="mb-3">
                             <?php if ($this->session->flashdata('failed')) : ?>
 
-                                <div class="alert alert-danger alert-dismissible" role="alert" id="liveAlert">
-                                    <strong><?php echo $this->session->flashdata('failed'); ?></strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert" id="liveAlert">
+                                <strong><?php echo $this->session->flashdata('failed'); ?></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                             <?php endif; ?>
 
                             <label for="email" class="form-label">email</label>
-                            <input type="email" id="email" class="form-control" name="email" placeholder="Email address here" required>
-                            <div class="invalid-feedback">Please enter valid username.</div>
+                            <input type="email" id="email" class="form-control" name="email"
+                                placeholder="Email address here" required>
+                            <div class="invalid-feedback">Masukan email anda.</div>
                         </div>
                         <!-- Password -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" class="form-control" name="password" placeholder="**************" required>
-                            <div class="invalid-feedback">Please enter valid password.</div>
+                            <input type="password" id="password" class="form-control" name="password"
+                                placeholder="**************" required>
+                            <div class="invalid-feedback">Masukan password anda.</div>
                         </div>
                         <!-- Checkbox -->
                         <div class="d-lg-flex justify-content-between align-items-center mb-4">
 
                             <div>
-                                <a href="forget-password.html">Lupa Password?</a>
+                                <a href="<?php echo base_url('page/account/reset/email') ?>">Lupa Password?</a>
                             </div>
                         </div>
                         <div>
