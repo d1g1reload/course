@@ -125,3 +125,6 @@ $route['user/profile/update/(:any)'] = 'Admin/User/update_profile/$1';
 
 //external
 $route['youtube/data'] = 'Course/Course/youtube';
+
+//webhook
+$route['zenziva'] = 'Webhook/zenziva_webhook';
