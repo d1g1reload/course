@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
@@ -136,5 +137,6 @@ $autoload['model'] = array(
     'Course_m',
     'User_m',
     'Student_m',
-    'Purchase_m'
+    'Purchase_m',
+    'Log_m'
 );
