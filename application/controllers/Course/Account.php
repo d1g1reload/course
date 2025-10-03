@@ -43,6 +43,20 @@ class Account extends CI_Controller
 
                     $this->course_lib->sendOtp($phone, $text);
                 }
+            } else {
+                $uotp = '0123456789';
+                $otp_code = substr(str_shuffle($uotp), 0, 4);
+                $text = "Berikut adalah kode OTP anda " . $otp_code;
+
+                $create_otp = date('Y-m-d H:i:s');
+                $data_otp = array(
+                    'phone'     => $phone,
+                    'otp_code'  => $otp_code,
+                    'created'   => $create_otp
+                );
+                $this->course_lib->sendOtp($phone, $text);
+                $this->User_m->save_otp($data_otp);
+
             }
 
             $this->session->set_userdata('reset_email', $email);
