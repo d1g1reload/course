@@ -19,13 +19,19 @@ class User_m extends CI_Model
 
     public function login($email, $password)
     {
-        $this->db->where('email', $email);
-        $account = $this->db->get('users')->row();
-        if ($account != null) {
-            if (password_verify($password, $account->password)) {
-                return $account;
-            }
+        $account = $this->db->where('email', $email)
+                            ->get('users')
+                            ->row();
+
+        if (!$account) {
+            return null; // email tidak ditemukan
         }
+
+        if (!password_verify($password, $account->password)) {
+            return false; // password salah
+        }
+
+        return $account; // sukses
     }
 
     public function check_email($email)
@@ -79,6 +85,19 @@ class User_m extends CI_Model
         return $query->num_rows() > 0; // Jika ada, return true
     }
 
+    public function check_otp_phone($phone)
+    {
+        return $this->db->where('phone', $phone)->get('otp')->row();
+    }
+
+    public function is_otp_and_phone_exists($phone, $otp_code)
+    {
+        return $this->db->where('phone', $phone)
+                    ->where('otp_code', $otp_code)
+                    ->get('otp')
+                    ->row();
+    }
+
     /**
      * update user
      */
@@ -92,4 +111,6 @@ class User_m extends CI_Model
     {
         return $this->db->where('id', $user_id)->update('users', $data);
     }
+
+
 }

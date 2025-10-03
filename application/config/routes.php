@@ -64,6 +64,13 @@ $route['verfiy/otp'] = 'Main/verify_otp';
 $route['page/account'] = 'Course/Account';
 $route['page/account/register'] = 'Course/Account/register';
 $route['page/account/reset/email'] = 'Course/Account/page_reset';
+$route['reset/otp'] = 'Course/Account/reset_otp_password';
+$route['page/otp/password'] = 'Course/Account/page_otp_password';
+$route['reset/submit'] = 'Course/Account/verify_otp_password';
+$route['page/reset/password'] = 'Course/Account/page_reset_password';
+$route['password/update'] = 'Course/Account/update_reset_password';
+
+
 
 /**
  * student page

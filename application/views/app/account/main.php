@@ -25,6 +25,15 @@
                             </div>
                             <?php endif; ?>
 
+                            <?php if ($this->session->flashdata('success')) : ?>
+
+                            <div class="alert alert-success alert-dismissible" role="alert" id="liveAlert">
+                                <strong><?php echo $this->session->flashdata('success'); ?></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            <?php endif; ?>
+
                             <label for="email" class="form-label">email</label>
                             <input type="email" id="email" class="form-control" name="email"
                                 placeholder="Email address here" required>

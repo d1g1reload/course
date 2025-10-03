@@ -7,9 +7,9 @@
                     <strong><?php echo $this->session->flashdata('failed'); ?></strong>
                 </div>
                 <?php endif; ?>
-
+                <h3>Reset Password</h3>
                 <div class="card-title">Masukan Email Anda</div>
-                <form action="<?php echo base_url('verfiy/otp') ?>" method="post">
+                <form action="<?php echo base_url('reset/otp') ?>" method="post">
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" required>
                         <div class="d-grid gap-2 mt-2">

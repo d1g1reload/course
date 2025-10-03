@@ -19,7 +19,7 @@ class Main extends CI_Controller
     }
 
 
-    function register()
+    public function register()
     {
         $options = ['cost' => 12];
         $fullname = $this->input->post('fullname');
@@ -96,4 +96,6 @@ class Main extends CI_Controller
             redirect('page/otp');
         }
     }
+
+
 }
