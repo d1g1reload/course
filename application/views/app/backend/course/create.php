@@ -14,100 +14,140 @@
     </div>
 </section>
 <section class="pb-8">
-    <form action="<?php echo base_url('course/submit') ?>" method="post" enctype="multipart/form-data">
+    <form id="form-add-course" action="<?php echo base_url('course/submit') ?>" method="post"
+        enctype="multipart/form-data">
         <div class="card mb-3">
-
-            <!-- Card body -->
             <div class="card-body">
-                <div class="mb-3">
-                    <label class="form-label" for="addCourseCategory">Status Kursus</label><br>
-                    <input type="hidden" name="course_status" value="0">
-                    <input type="checkbox" name="course_status" id="course_status" value="1"
-                        data-toggle="toggle" data-on="Publish" data-off="Draft"
-                        data-onstyle="success" data-offstyle="danger" checked>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="addCourseCategory">Banner Kursus</label>
-                    <input type="file" class="form-control" name="course_banner" required>
 
+                <div class="mb-3">
+                    <label class="form-label">Status Kursus</label><br>
+                    <input type="hidden" name="course_status" value="0">
+                    <input type="checkbox" name="course_status" value="1" data-toggle="toggle" data-on="Publish"
+                        data-off="Draft" data-onstyle="success" data-offstyle="danger" checked>
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Kategori Kursus</label>
+                    <select name="course_category" id="select_category" class="form-control">
+                        <?php foreach ($category as $cat) : ?>
+                        <option value="<?php echo $cat->id ?>"><?php echo $cat->category_name ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Banner Kursus</label>
+                    <input type="file" class="form-control" name="course_banner" required>
+                </div>
+
                 <div class="mb-3">
                     <label for="addCourseTitle" class="form-label">Judul Kursus</label>
                     <input id="addCourseTitle" name="course_title" class="form-control" type="text"
-                        placeholder="Course Title " />
-                    <small>Tuliskan denganjelas judul kursus yang akan anda buat.</small>
+                        placeholder="Course Title" required /> <small>Tuliskan dengan jelas judul kursus yang akan anda
+                        buat.</small>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label" for="addCourseCategory">Jenis Kursus</label>
-                    <select name="course_category" id="course_cat" class="form-control">
+                    <label class="form-label">Jenis Kursus</label>
+                    <select name="course_type" id="select_type" class="form-control">
                         <option value="0">Gratis</option>
                         <option value="1">Premium</option>
                     </select>
-
                     <small>Silahkan pilih kursus anda gratis atau berbayar.</small>
                 </div>
+
                 <div class="mb-3">
                     <div id="premium_input" style="display: none;">
-                        <div class="form-group">
-                            <label for="">Harga Kursus</label>
-                            <input type="number" class="form-control" id="course_price" name="course_price">
+                        <div class="form-group mb-3">
+                            <label for="">Harga Kursus (Rp)</label>
+                            <input type="number" class="form-control" id="course_price" name="course_price" value="0">
                         </div>
                         <div class="form-group">
-                            <label for="">Diskon Kursus</label>
+                            <label for="">Diskon Kursus (%)</label>
                             <input type="number" class="form-control" name="course_discount" value="0">
                         </div>
                     </div>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label" for="addCourseLevel">Level Kursus</label>
-                    <select class="form-select" data-choices="" id="addCourseLevel" name="course_level">
+                    <label class="form-label">Level Kursus</label>
+                    <select class="form-select" id="addCourseLevel" name="course_level">
                         <?php foreach ($level as $val) : ?>
-                            <option value="<?php echo $val->id ?>"><?php echo $val->level_name ?></option>
+                        <option value="<?php echo $val->id ?>"><?php echo $val->level_name ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label">Deskripsi Kursus</label>
-                    <textarea id="summernote" name="course_description" class="form-control" cols="10" rows="10" required></textarea>
+                    <textarea id="summernote" name="course_description" class="form-control" cols="10" rows="10"
+                        required></textarea>
                     <small>Jelaskan secara detail kursus yang akan anda berikan.</small>
                 </div>
             </div>
         </div>
-        <!-- Button -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#save-course">Simpan</button>
-        <!-- Modal -->
-        <div class="modal fade" id="save-course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#save-course">Simpan</button>
+
+        <div class="modal fade" id="save-course" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-danger" id="exampleModalLabel">Mohon dibaca</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title text-danger">Mohon dibaca</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h3>Anda Yakin ingin menyimpan kursus ini ? Setelah anda menyimpan kursus ini maka harga tidak dapat di rubah kembali.</h3>
+                        <p>Anda Yakin ingin menyimpan kursus ini? Setelah disimpan, pastikan data sudah benar.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                        <button type="button" class="btn btn-primary" id="confirm-save">Ya</button>
+                        <button type="button" class="btn btn-primary" id="confirm-save">Ya, Simpan</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-
 </section>
+
 <script>
-    var course_cat = document.getElementById('course_cat')
-    var premium_input = document.getElementById('premium_input')
-    course_cat.addEventListener('change', function() {
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Logic Show/Hide Harga
+    var selectType = document.getElementById('select_type'); // ID Baru
+    var premiumInput = document.getElementById('premium_input');
+    var priceInput = document.getElementById('course_price');
+
+    selectType.addEventListener('change', function() {
         if (this.value === "1") {
-            // Jika nilai 1 (Premium), tampilkan input
-            premium_input.style.display = "block";
+            // Jika Premium
+            premiumInput.style.display = "block";
+            priceInput.required = true; // Wajib isi jika premium
         } else {
-            // Selain itu, sembunyikan input
-            premium_input.style.display = "none";
+            // Jika Gratis
+            premiumInput.style.display = "none";
+            priceInput.value = 0; // Reset harga jadi 0
+            priceInput.required = false;
         }
-    })
+    });
+
+    // 2. Logic Submit Form dari Modal
+    var btnConfirm = document.getElementById('confirm-save');
+    var formAdd = document.getElementById('form-add-course');
+
+    btnConfirm.addEventListener('click', function() {
+        // Validasi manual HTML5 sebelum submit (opsional tapi disarankan)
+        if (formAdd.checkValidity()) {
+            formAdd.submit();
+        } else {
+            // Tutup modal dulu biar user lihat error di form
+            // Bootstrap 5 method to hide modal (sesuaikan versi bootstrap Anda jika error)
+            var myModalEl = document.getElementById('save-course');
+            var modal = bootstrap.Modal.getInstance(myModalEl);
+            modal.hide();
+
+            // Trigger browser validation UI
+            formAdd.reportValidity();
+        }
+    });
+});
 </script>

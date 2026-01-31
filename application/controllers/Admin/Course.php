@@ -28,6 +28,7 @@ class Course extends CI_Controller
     public function page_create()
     {
         $data['level'] = $this->Course_m->get_level_course();
+        $data['category'] = $this->Course_m->get_categories();
         $data['content_admin'] = "app/backend/course/create";
         $this->load->view('layouts/panel', $data);
     }
@@ -36,6 +37,7 @@ class Course extends CI_Controller
     {
         $user_id = $this->session->userdata('user_id');
         $title = $this->input->post('course_title', true);
+        $course_language = $this->input->post('course_category', true);
         $course_price = $this->input->post('course_price', true);
         $course_discount = $this->input->post('course_discount', true);
         $description = $this->input->post('course_description', true);
@@ -65,6 +67,7 @@ class Course extends CI_Controller
                 $file = $this->upload->data();
                 $product_course = array(
                     'user_id'            => $user_id,
+                    'category_id'        => $course_language,
                     'course_banner'      => $file['file_name'],
                     'course_title'       => $title,
                     'course_slug'        => slug($title),

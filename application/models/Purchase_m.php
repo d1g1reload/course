@@ -90,7 +90,9 @@ class Purchase_m extends CI_Model
 
     public function get_user_id_instruktur($course_id)
     {
-        return $this->db->where('id', $course_id)->get('tm_course')->row();
+        $this->db->select('user_id, course_price, course_discount');
+        $this->db->where('id', $course_id);
+        return $this->db->get('tm_course')->row();
     }
 
     public function get_saldo_user($saldo_user_id)

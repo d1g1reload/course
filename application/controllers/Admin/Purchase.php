@@ -87,56 +87,82 @@ class Purchase extends CI_Controller
         $user_id = $this->input->post('user_id');
         $course_id = $this->input->post('course_id');
         $update_at = date('Y-m-d H:i:s');
+
+        // Mulai Transaksi Database (Agar data aman & konsisten)
+        $this->db->trans_start();
+
+        // 1. Update Status Pembayaran di tabel Purchases
         $update_payment_user = array(
-            'payment_status' => 2,
+            'payment_status' => 2, // 2 = Success/Paid
             'update_at' => $update_at
         );
-        $success_update = $this->Purchase_m->update_payment_status($trx_reff, $update_payment_user);
+        $this->Purchase_m->update_payment_status($trx_reff, $update_payment_user);
 
-        $is_success = true;
-        if ($is_success) {
-            $update_enroll_user = array(
-                'enroll_status' => 1,
-            );
-            //daftarkan pengguna ke kursus
-            $this->Purchase_m->update_enroll_user($trx_reff, $update_enroll_user);
+        // 2. Update Status Enroll (Aktifkan Kursus untuk User)
+        $update_enroll_user = array(
+            'enroll_status' => 1,
+        );
+        $this->Purchase_m->update_enroll_user($trx_reff, $update_enroll_user);
 
-            // Simpan materi kursus untuk pengguna
-            $this->Purchase_m->save_course_materials_for_user($user_id, $course_id);
+        // 3. Simpan akses materi kursus untuk pengguna
+        $this->Purchase_m->save_course_materials_for_user($user_id, $course_id);
 
-            //update saldo insturktur
-            $course_data = $this->Purchase_m->get_user_id_instruktur($course_id);
-            $course_price = $course_data->course_price;
-            $course_percent_instruktur = 70;
-            $course_percent_admin = 30;
+        // ==========================================
+        // LOGIKA PERHITUNGAN BAGI HASIL (70:30)
+        // ==========================================
 
-            $course_instruktur_id = $course_data->user_id;
-            $instruktur_profile = $this->Purchase_m->get_saldo_user($course_instruktur_id);
-            $saldo_instruktur = $instruktur_profile->saldo;
-            $calculate_instruktur = ($course_percent_instruktur / 100) * $course_price;
-            $course_price_instruktur = $calculate_instruktur;
-            $update_saldo_instruktur = $saldo_instruktur + $course_price_instruktur;
-            $update_instruktur = [
-                'saldo' => $update_saldo_instruktur
-            ];
-            $this->Purchase_m->update_saldo($course_instruktur_id, $update_instruktur);
+        // Ambil data kursus (Harga & Diskon) & Data Instruktur
+        // Pastikan fungsi ini select 'course_price', 'course_discount', dan 'user_id' (pemilik kursus)
+        $course_data = $this->Purchase_m->get_user_id_instruktur($course_id);
 
-            //update saldo administrator
-            $admin_id = 4;
-            $admin_profile = $this->Purchase_m->get_saldo_user($admin_id);
-            $saldo_admin = $admin_profile->saldo;
-            $calculate_admin = ($course_percent_admin / 100) * $course_price;
+        $base_price = $course_data->course_price;     // Harga Asli
+        $discount_percent = $course_data->course_discount; // Diskon (%)
 
-            $course_price_admin = $calculate_admin;
-            $update_saldo_admin = $saldo_admin + $course_price_admin;
-            $update_admin = [
-                'saldo' => $update_saldo_admin
-            ];
-            $this->Purchase_m->update_saldo($admin_id, $update_admin);
+        // Hitung Nominal Diskon
+        $discount_amount = ($base_price * $discount_percent) / 100;
 
+        // Hitung Uang Masuk (Net Sales) yang akan dibagi
+        $net_sales = $base_price - $discount_amount;
 
+        // Hitung Jatah Masing-masing
+        $share_instruktur = $net_sales * 0.70; // 70%
+        $share_admin      = $net_sales * 0.30; // 30%
+
+        // 4. Update Saldo Instruktur
+        $course_instruktur_id = $course_data->user_id;
+        $instruktur_profile = $this->Purchase_m->get_saldo_user($course_instruktur_id);
+
+        $saldo_awal_instruktur = $instruktur_profile->saldo;
+        $saldo_akhir_instruktur = $saldo_awal_instruktur + $share_instruktur;
+
+        $update_instruktur = [
+            'saldo' => $saldo_akhir_instruktur
+        ];
+        $this->Purchase_m->update_saldo($course_instruktur_id, $update_instruktur);
+
+        // 5. Update Saldo Administrator
+        $admin_id = 4; // ID Admin (Sebaiknya jangan hardcode, tapi ambil dari config/session jika memungkinkan)
+        $admin_profile = $this->Purchase_m->get_saldo_user($admin_id);
+
+        $saldo_awal_admin = $admin_profile->saldo;
+        $saldo_akhir_admin = $saldo_awal_admin + $share_admin;
+
+        $update_admin = [
+            'saldo' => $saldo_akhir_admin
+        ];
+        $this->Purchase_m->update_saldo($admin_id, $update_admin);
+
+        // Selesaikan Transaksi
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === false) {
+            // Jika ada error database
+            $this->session->set_flashdata('failed', 'Terjadi kesalahan sistem, pembayaran gagal diapprove.');
+        } else {
+            // Jika sukses semua
+            $this->session->set_flashdata('success', 'Berhasil Approve Pembayaran. Saldo Instruktur & Admin telah diperbarui.');
         }
-        $this->session->set_flashdata('success', 'Berhasil Approve Pembayaran.');
+
         redirect('dashboard');
     }
 }
