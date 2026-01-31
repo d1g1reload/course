@@ -46,7 +46,7 @@ class User_m extends CI_Model
 
     public function update_status_user($phone, $data)
     {
-        $this->db->where('phone', $phone)->update('users', $data);
+        $this->db->where('email', $phone)->update('users', $data);
     }
 
     public function saldo_user($user_id)
@@ -58,45 +58,36 @@ class User_m extends CI_Model
      * otp
      */
 
+    // Simpan OTP baru
     public function save_otp($dataotp)
     {
         $this->db->insert('otp', $dataotp);
     }
 
-    public function otp_temp($otp_code)
-    {
-        return $this->db->where('otp_code', $otp_code)->get('otp')->row();
-    }
-
-    public function otp_verify($otp_code)
-    {
-        return $this->db->where('otp_code', $otp_code)->get('otp')->row();
-    }
-
-    public function update_counter_otp($otp_code, $data)
-    {
-        $this->db->where('otp_code', $otp_code)->update('otp', $data);
-    }
-
+    // Cek apakah kode OTP ada (untuk mencegah duplikat saat generate)
     public function isOTPExists($otp_code)
     {
         $this->db->where('otp_code', $otp_code);
-        $query = $this->db->get('otp'); // Asumsikan tabel OTP bernama 'otps'
-        return $query->num_rows() > 0; // Jika ada, return true
+        $query = $this->db->get('otp');
+        return $query->num_rows() > 0;
     }
 
-    public function check_otp_phone($phone)
+    // Fungsi Utama Verifikasi: Cek kombinasi Email dan Kode OTP
+    public function verify_otp_email($email, $otp_code)
     {
-        return $this->db->where('phone', $phone)->get('otp')->row();
-    }
-
-    public function is_otp_and_phone_exists($phone, $otp_code)
-    {
-        return $this->db->where('phone', $phone)
+        return $this->db->where('email', $email)
                     ->where('otp_code', $otp_code)
                     ->get('otp')
                     ->row();
     }
+
+    // Hapus OTP setelah berhasil dipakai (Opsional, untuk kebersihan database)
+    public function delete_otp($email)
+    {
+        $this->db->where('email', $email)->delete('otp');
+    }
+
+
 
     /**
      * update user

@@ -11,7 +11,7 @@ class Course_lib
     public $passkey = 'bee6fffef7c8bc00aca5d675';
 
     public $urlotp = 'https://console.zenziva.net/wareguler/api/sendWA/';
-    function convert_time_youtube($duration)
+    public function convert_time_youtube($duration)
     {
         if ($duration) {
             $start = new DateTime('@0'); // Unix epoch
@@ -22,7 +22,7 @@ class Course_lib
         return $youtube_time;
     }
 
-    function youtube_api($video_code)
+    public function youtube_api($video_code)
     {
         $apikey = "AIzaSyAaw-003dXTKM1R0ahWTxESbUVMu6EhQqM";
         $youtube = new Madcoda\Youtube\Youtube(array('key' => $apikey));
@@ -31,7 +31,7 @@ class Course_lib
         return $video;
     }
 
-    function sendOtp($phone, $text)
+    public function sendOtp($phone, $text)
     {
 
         $telepon = $phone;
@@ -55,7 +55,7 @@ class Course_lib
         curl_close($curlHandle);
     }
 
-    function generateUUID()
+    public function generateUUID()
     {
         return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
@@ -68,5 +68,38 @@ class Course_lib
             mt_rand(0, 0xffff),
             mt_rand(0, 0xffff)
         );
+    }
+
+    public function sendMail($to, $subject, $body, $from_text)
+    {
+
+        $mail = $this->phpmailer_lib->load();
+
+        $mail->SMTPDebug  = 0;
+        $mail->isSMTP();
+        $mail->Host     = 'smtp.hostinger.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'info@eduhost.my.id';
+        $mail->Password = 'Eduhost@2025';
+        // $mail->SMTPSecure = 'ssl';
+        // $mail->Port     = 465;
+        $mail->SMTPSecure = 'tls';
+        $mail->Port       = 587;
+
+        $mail->setFrom('info@eduhost.my.id', $from_text);
+        $mail->addAddress($to);
+
+        $mail->Subject = $subject;
+
+        $mail->isHTML(true);
+
+        $mail->Body = $body;
+
+        // Send email
+        if (!$mail->send()) {
+            return ['success' => false,'error' => $mail->ErrorInfo];
+        } else {
+            return ['success' => true];
+        }
     }
 }
