@@ -25,7 +25,7 @@
 
     <link rel="canonical" href="https://geeksui.codescandy.com/geeks/index.html" />
     <link href="<?php echo base_url() ?>assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet" />
-    <title>Geeks - Bootstrap 5 Template</title>
+    <title>Eduhost - Platform Kursus Online</title>
 </head>
 
 <body>
@@ -33,18 +33,23 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid px-0">
-                <a class="navbar-brand" href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>assets/images/brand/logo/logo.svg" alt="Geeks" /></a>
+                <a class="navbar-brand" href="<?php echo base_url() ?>"><img
+                        src="<?php echo base_url() ?>assets/images/brand/logo/logo.svg" alt="Geeks" /></a>
                 <!-- Mobile view nav wrap -->
                 <div class="ms-auto d-flex align-items-center order-lg-3">
 
                     <ul class="navbar-nav navbar-right-wrap ms-2 flex-row d-none d-md-block">
                         <li class="dropdown d-inline-block stopevent position-static">
-                            <a class="btn btn-light btn-icon rounded-circle indicator indicator-primary" href="#" role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-light btn-icon rounded-circle indicator indicator-primary" href="#"
+                                role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <i class="fe fe-bell"></i>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg position-absolute mx-3 my-5" aria-labelledby="dropdownNotificationSecond">
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg position-absolute mx-3 my-5"
+                                aria-labelledby="dropdownNotificationSecond">
                                 <div>
-                                    <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
+                                    <div
+                                        class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
                                         <span class="h5 mb-0">Notifications</span>
                                         <a href="# ">
                                             <span class="align-middle"><i class="fe fe-settings me-1"></i></span>
@@ -56,13 +61,16 @@
                                                 <div class="col">
                                                     <a class="text-body" href="#">
                                                         <div class="d-flex">
-                                                            <img src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle" />
+                                                            <img src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg"
+                                                                alt="" class="avatar-md rounded-circle" />
                                                             <div class="ms-3">
                                                                 <h5 class="fw-bold mb-1">Kristin Watson:</h5>
-                                                                <p class="mb-3 text-body">Krisitn Watsan like your comment on course Javascript Introduction!</p>
+                                                                <p class="mb-3 text-body">Krisitn Watsan like your
+                                                                    comment on course Javascript Introduction!</p>
                                                                 <span class="fs-6">
                                                                     <span>
-                                                                        <span class="fe fe-thumbs-up text-success me-1"></span>
+                                                                        <span
+                                                                            class="fe fe-thumbs-up text-success me-1"></span>
                                                                         2 hours ago,
                                                                     </span>
                                                                     <span class="ms-1">2:19 PM</span>
@@ -72,9 +80,11 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-auto text-center me-2">
-                                                    <a href="#" class="badge-dot bg-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as read"></a>
+                                                    <a href="#" class="badge-dot bg-info" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Mark as read"></a>
                                                     <div>
-                                                        <a href="#" class="bg-transparent" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove">
+                                                        <a href="#" class="bg-transparent" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Remove">
                                                             <i class="fe fe-x"></i>
                                                         </a>
                                                     </div>
@@ -84,23 +94,28 @@
 
                                     </ul>
                                     <div class="border-top px-3 pt-3 pb-0">
-                                        <a href="./pages/notification-history.html" class="text-link fw-semibold">See all Notifications</a>
+                                        <a href="./pages/notification-history.html" class="text-link fw-semibold">See
+                                            all Notifications</a>
                                     </div>
                                 </div>
                             </div>
                         </li>
 
                         <li class="dropdown ms-2 d-inline-block position-static">
-                            <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static"
+                                aria-expanded="false">
                                 <div class="avatar avatar-md avatar-indicators avatar-online">
-                                    <img alt="avatar" src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg" class="rounded-circle" />
+                                    <img alt="avatar" src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg"
+                                        class="rounded-circle" />
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end position-absolute mx-3 my-5">
                                 <div class="dropdown-item">
                                     <div class="d-flex">
                                         <div class="avatar avatar-md avatar-indicators avatar-online">
-                                            <img alt="avatar" src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg" class="rounded-circle" />
+                                            <img alt="avatar"
+                                                src="<?php echo base_url() ?>assets/images/avatar/avatar-1.jpg"
+                                                class="rounded-circle" />
                                         </div>
                                         <div class="ms-3 lh-1">
                                             <h5 class="mb-1">Annette Black</h5>
@@ -176,7 +191,9 @@
                 </div>
                 <div>
                     <!-- Button -->
-                    <button class="navbar-toggler collapsed ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler collapsed ms-2" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <span class="icon-bar top-bar mt-0"></span>
                         <span class="icon-bar middle-bar"></span>
                         <span class="icon-bar bottom-bar"></span>
@@ -186,10 +203,12 @@
                 <div class="collapse navbar-collapse" id="navbar-default">
                     <ul class="navbar-nav mt-3 mt-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">Browse</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarBrowse" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" data-bs-display="static">Browse</a>
                             <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarBrowse">
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Web Development</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Web
+                                        Development</a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="./pages/course-category.html">Bootstrap</a>
@@ -221,19 +240,23 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Design</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle"
+                                        href="#">Design</a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="./pages/course-category.html">Graphic Design</a>
+                                            <a class="dropdown-item" href="./pages/course-category.html">Graphic
+                                                Design</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/course-category.html">Illustrator</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/course-category.html">UX / UI Design</a>
+                                            <a class="dropdown-item" href="./pages/course-category.html">UX / UI
+                                                Design</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/course-category.html">Figma Design</a>
+                                            <a class="dropdown-item" href="./pages/course-category.html">Figma
+                                                Design</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/course-category.html">Adobe XD</a>
@@ -273,17 +296,20 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarLanding" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Landings</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLanding" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Landings</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarLanding">
                                 <li>
                                     <h4 class="dropdown-header">Landings</h4>
                                 </li>
 
                                 <li>
-                                    <a href="./pages/landings/landing-education.html" class="dropdown-item justify-content-between">Education</a>
+                                    <a href="./pages/landings/landing-education.html"
+                                        class="dropdown-item justify-content-between">Education</a>
                                 </li>
                                 <li>
-                                    <a href="./pages/landings/home-academy.html" class="dropdown-item justify-content-between">Home Academy</a>
+                                    <a href="./pages/landings/home-academy.html"
+                                        class="dropdown-item justify-content-between">Home Academy</a>
                                 </li>
                                 <li>
                                     <a href="./pages/landings/landing-courses.html" class="dropdown-item">Courses</a>
@@ -292,40 +318,48 @@
                                     <a href="./pages/landings/course-lead.html" class="dropdown-item">Lead Course</a>
                                 </li>
                                 <li>
-                                    <a href="./pages/landings/request-access.html" class="dropdown-item">Request Access</a>
+                                    <a href="./pages/landings/request-access.html" class="dropdown-item">Request
+                                        Access</a>
                                 </li>
                                 <li>
                                     <a href="./pages/landings/landing-sass.html" class="dropdown-item">SaaS</a>
                                 </li>
 
                                 <li>
-                                    <a href="./pages/landings/landing-job.html" class="dropdown-item justify-content-between">Job Listing</a>
+                                    <a href="./pages/landings/landing-job.html"
+                                        class="dropdown-item justify-content-between">Job Listing</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarPages" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarPages" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Pages</a>
                             <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarPages">
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Courses</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle"
+                                        href="#">Courses</a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="./pages/course-single.html">Course Single</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/course-single-v2.html">Course Single v2</a>
+                                            <a class="dropdown-item" href="./pages/course-single-v2.html">Course Single
+                                                v2</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/course-resume.html">Course Resume</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/course-category.html">Course Category</a>
+                                            <a class="dropdown-item" href="./pages/course-category.html">Course
+                                                Category</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/course-checkout.html">Course Checkout</a>
+                                            <a class="dropdown-item" href="./pages/course-checkout.html">Course
+                                                Checkout</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/course-filter-list.html">Course List/Grid</a>
+                                            <a class="dropdown-item" href="./pages/course-filter-list.html">Course
+                                                List/Grid</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/add-course.html">Add New Course</a>
@@ -339,7 +373,8 @@
                                             <a href="./pages/course-path.html" class="dropdown-item">Browse Path</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/course-path-single.html" class="dropdown-item">Path Single</a>
+                                            <a href="./pages/course-path-single.html" class="dropdown-item">Path
+                                                Single</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -362,7 +397,8 @@
                                 </li>
 
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Career</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle"
+                                        href="#">Career</a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="./pages/career.html">Overview</a>
@@ -376,7 +412,8 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Portfolio</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle"
+                                        href="#">Portfolio</a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="./pages/portfolio.html">List</a>
@@ -402,15 +439,18 @@
                                             <a class="dropdown-item" href="./pages/jobs/job-single.html">Single</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/jobs/company-list.html">Company List</a>
+                                            <a class="dropdown-item" href="./pages/jobs/company-list.html">Company
+                                                List</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/jobs/company-about.html">Company Single</a>
+                                            <a class="dropdown-item" href="./pages/jobs/company-about.html">Company
+                                                Single</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Specialty</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle"
+                                        href="#">Specialty</a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="./pages/coming-soon.html">Coming Soon</a>
@@ -419,10 +459,12 @@
                                             <a class="dropdown-item" href="./pages/404-error.html">Error 404</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/maintenance-mode.html">Maintenance Mode</a>
+                                            <a class="dropdown-item" href="./pages/maintenance-mode.html">Maintenance
+                                                Mode</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/terms-condition-page.html">Terms & Conditions</a>
+                                            <a class="dropdown-item" href="./pages/terms-condition-page.html">Terms &
+                                                Conditions</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -435,7 +477,8 @@
                                 </li>
 
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Help Center</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Help
+                                        Center</a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="./pages/help-center.html">Help Center</a>
@@ -447,7 +490,8 @@
                                             <a class="dropdown-item" href="./pages/help-center-guide.html">Guide</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/help-center-guide-single.html">Guide Single</a>
+                                            <a class="dropdown-item" href="./pages/help-center-guide-single.html">Guide
+                                                Single</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/help-center-support.html">Support</a>
@@ -468,29 +512,34 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarAccount" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accounts</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarAccount" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Accounts</a>
                             <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarAccount">
                                 <li>
                                     <h4 class="dropdown-header">Accounts</h4>
                                 </li>
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Instructor</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle"
+                                        href="#">Instructor</a>
                                     <ul class="dropdown-menu">
                                         <li class="text-wrap">
                                             <h5 class="dropdown-header text-dark">Instructor</h5>
-                                            <p class="dropdown-text mb-0">Instructor dashboard for manage courses and earning.</p>
+                                            <p class="dropdown-text mb-0">Instructor dashboard for manage courses and
+                                                earning.</p>
                                         </li>
                                         <li>
                                             <hr class="mx-3" />
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/dashboard-instructor.html">Dashboard</a>
+                                            <a class="dropdown-item"
+                                                href="./pages/dashboard-instructor.html">Dashboard</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/instructor-profile.html">Profile</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/instructor-courses.html">My Courses</a>
+                                            <a class="dropdown-item" href="./pages/instructor-courses.html">My
+                                                Courses</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/instructor-order.html">Orders</a>
@@ -499,7 +548,8 @@
                                             <a class="dropdown-item" href="./pages/instructor-reviews.html">Reviews</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/instructor-students.html">Students</a>
+                                            <a class="dropdown-item"
+                                                href="./pages/instructor-students.html">Students</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/instructor-payouts.html">Payouts</a>
@@ -514,24 +564,29 @@
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="dropdown-item" href="./pages/instructor-quiz.html">Quiz</a>
+                                                    <a class="dropdown-item"
+                                                        href="./pages/instructor-quiz.html">Quiz</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="./pages/instructor-quiz-details.html">Single</a>
+                                                    <a class="dropdown-item"
+                                                        href="./pages/instructor-quiz-details.html">Single</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="./pages/instructor-quiz-result.html">Result</a>
+                                                    <a class="dropdown-item"
+                                                        href="./pages/instructor-quiz-result.html">Result</a>
                                                 </li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">Students</a>
+                                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle"
+                                        href="#">Students</a>
                                     <ul class="dropdown-menu">
                                         <li class="text-wrap">
                                             <h5 class="dropdown-header text-dark">Students</h5>
-                                            <p class="dropdown-text mb-0">Students dashboard to manage your courses and subscriptions.</p>
+                                            <p class="dropdown-text mb-0">Students dashboard to manage your courses and
+                                                subscriptions.</p>
                                         </li>
                                         <li>
                                             <hr class="mx-3" />
@@ -540,7 +595,8 @@
                                             <a class="dropdown-item" href="./pages/dashboard-student.html">Dashboard</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/student-subscriptions.html">Subscriptions</a>
+                                            <a class="dropdown-item"
+                                                href="./pages/student-subscriptions.html">Subscriptions</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/payment-method.html">Payments</a>
@@ -552,10 +608,12 @@
                                             <a class="dropdown-item" href="./pages/invoice.html">Invoice</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/invoice-details.html">Invoice Details</a>
+                                            <a class="dropdown-item" href="./pages/invoice-details.html">Invoice
+                                                Details</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./pages/dashboard-student.html">Bookmarked</a>
+                                            <a class="dropdown-item"
+                                                href="./pages/dashboard-student.html">Bookmarked</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="./pages/dashboard-student.html">My Path</a>
@@ -570,13 +628,16 @@
                                                     <a class="dropdown-item" href="./pages/student-quiz.html">Quiz</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="./pages/student-quiz-attempt.html">Attempt</a>
+                                                    <a class="dropdown-item"
+                                                        href="./pages/student-quiz-attempt.html">Attempt</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="./pages/student-quiz-start.html">Start</a>
+                                                    <a class="dropdown-item"
+                                                        href="./pages/student-quiz-start.html">Start</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="./pages/student-quiz-result.html">Result</a>
+                                                    <a class="dropdown-item"
+                                                        href="./pages/student-quiz-result.html">Result</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -587,13 +648,15 @@
                                     <ul class="dropdown-menu">
                                         <li class="text-wrap">
                                             <h5 class="dropdown-header text-dark">Master Admin</h5>
-                                            <p class="dropdown-text mb-0">Master admin dashboard to manage courses, user, site setting , and work with amazing apps.</p>
+                                            <p class="dropdown-text mb-0">Master admin dashboard to manage courses,
+                                                user, site setting , and work with amazing apps.</p>
                                         </li>
                                         <li>
                                             <hr class="mx-3" />
                                         </li>
                                         <li class="px-3 d-grid">
-                                            <a href="./pages/dashboard/admin-dashboard.html" class="btn btn-sm btn-primary">Go to Dashboard</a>
+                                            <a href="./pages/dashboard/admin-dashboard.html"
+                                                class="btn btn-sm btn-primary">Go to Dashboard</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -633,7 +696,8 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <i class="fe fe-more-horizontal"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDropdown">
@@ -647,7 +711,8 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <a class="list-group-item list-group-item-action border-0" href="./docs/bootstrap-5-snippets.html">
+                                    <a class="list-group-item list-group-item-action border-0"
+                                        href="./docs/bootstrap-5-snippets.html">
                                         <div class="d-flex align-items-center">
                                             <i class="bi bi-files fs-3 text-primary"></i>
                                             <div class="ms-3">
@@ -656,7 +721,8 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <a class="list-group-item list-group-item-action border-0" href="./docs/changelog.html">
+                                    <a class="list-group-item list-group-item-action border-0"
+                                        href="./docs/changelog.html">
                                         <div class="d-flex align-items-center">
                                             <i class="fe fe-layers fs-3 text-primary"></i>
                                             <div class="ms-3">
@@ -668,7 +734,8 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <a class="list-group-item list-group-item-action border-0" href="https://geeksui.codescandy.com/geeks-rtl/" target="_blank">
+                                    <a class="list-group-item list-group-item-action border-0"
+                                        href="https://geeksui.codescandy.com/geeks-rtl/" target="_blank">
                                         <div class="d-flex align-items-center">
                                             <i class="fe fe-toggle-right fs-3 text-primary"></i>
                                             <div class="ms-3">
@@ -701,7 +768,8 @@
     <!-- Scroll top -->
     <div class="btn-scroll-top">
         <svg class="progress-square svg-content" width="100%" height="100%" viewBox="0 0 40 40">
-            <path d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
+            <path
+                d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
         </svg>
     </div>
 

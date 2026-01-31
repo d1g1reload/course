@@ -35,7 +35,6 @@
     <style>
     body {
         font-family: "Quicksand", sans-serif;
-        font-style: normal;
     }
     </style>
 </head>
@@ -67,7 +66,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="#">Kelas</a>
+                            <a class="dropdown-item" href="<?php echo base_url('page/course') ?>">Kursus</a>
                         </li>
 
 
@@ -96,105 +95,94 @@
 
     </main>
     <!-- Footer -->
-    <footer class="footer bg-dark-stable py-8">
-        <div class="container">
-            <div class="row gy-6 gy-xl-0 pb-8">
-                <div class="col-xl-3 col-lg-12 col-md-6 col-12">
-                    <div class="d-flex flex-column gap-4">
-                        <div>
-                            <b>PT.DIGITAL RELOAD INDONESIA</b>
+    <footer class="pt-lg-8 pt-5 footer bg-white">
+        <div class="container mt-lg-2">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- about company -->
+                    <div class="mb-4">
+
+                        <div class="mt-4">
+                            <p>"Eduhost adalah platform belajar online yang berdedikasi untuk meningkatkan keahlian
+                                praktis masyarakat Indonesia. Kami menyediakan akses pendidikan berkualitas yang dapat
+                                dijangkau oleh siapa saja, di mana saja."</p>
+                            <!-- social media -->
+                            <div class="fs-4 mt-4">
+
+                            </div>
                         </div>
-                        <p class="mb-0">Eduhost Platform Kursus Online yang disusun untuk Pemula.</p>
-
                     </div>
                 </div>
-                <div class="col-xl-2 col-md-3 col-6">
-                    <div class="d-flex flex-column gap-3">
-                        <span class="text-white-stable">Company</span>
-                        <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
-                            <li>
-                                <a href="#!" class="nav-link">Tentang Kami</a>
-                            </li>
+                <div class="offset-lg-1 col-lg-2 col-md-3 col-6">
+                    <div class="mb-4">
+                        <!-- list -->
+                        <h3 class="fw-bold mb-3">Perusahaan</h3>
+                        <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
+                            <li><a href="<?php echo base_url('page/about') ?>" class="nav-link">Tentang Kami</a></li>
+                            <li><a href="<?php echo base_url('page/course') ?>" class="nav-link">Kursus</a></li>
+                            <li><a href="#" class="nav-link">Blog</a></li>
 
 
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-2 col-md-3 col-6">
-                    <div class="d-flex flex-column gap-3">
-                        <span class="text-white-stable">Community</span>
-                        <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
-                            <li>
-                                <a href="#!" class="nav-link">Support</a>
-                            </li>
-
-                            <li>
-                                <a href="#!" class="nav-link">Blog</a>
-                            </li>
-
+                <div class="col-lg-2 col-md-3 col-6">
+                    <div class="mb-4">
+                        <!-- list -->
+                        <h3 class="fw-bold mb-3">Bantuan</h3>
+                        <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
+                            <li><a href="<?php echo base_url('page/help') ?>" class="nav-link">Pusat Bantuan</a></li>
+                            <li><a href="#" class="nav-link">FAQ</a></li>
+                            <li><a href="#" class="nav-link">Panduan Belajar</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-2 col-md-3 col-12">
-                    <div class="d-flex flex-column gap-3">
-                        <span class="text-white-stable">Teaching</span>
-                        <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
-                            <li>
-                                <a href="#!" class="nav-link">Daftar Instruktur</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="nav-link">Dokumentasi</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-12">
-                    <div class="d-flex flex-column gap-5">
-                        <div class="d-flex flex-column gap-3">
-                            <span class="text-white-stable">Contact</span>
-                            <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
-
-                                <li>
-                                    Email:
-                                    <span class="fw-semibold">websitecourse.ar@gmail.com</span>
-                                </li>
-                                <li>
-                                    Alamat:
-                                    <span class="fw-semibold">
-                                        Cikaret, Ciomas Kabupaten Bogor.
-                                    </span>
-                                </li>
-                            </ul>
+                <div class="col-lg-3 col-md-12">
+                    <!-- contact info -->
+                    <div class="mb-4">
+                        <h3 class="fw-bold mb-3">Informasi Kontak</h3>
+                        <p>Lapangan Sakura,Cikaret Kota Batu, Kabupaten Bogor</p>
+                        <p class="mb-1">
+                            Email:
+                            <a href="#">info@eduhost.my.id</a>
+                        </p>
+                        <p>
+                            Phone:
+                            <span class="text-dark fw-semibold">0823-8200-4408</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="ms-2"><img src="<?php echo base_url() ?>/assets/images/svg/playstore.svg"
+                                    alt="" class="img-fluid" /></a>
                         </div>
-                        <!-- <div class="d-flex flex-row gap-2">
-                            <a href="#"><img src="./assets/images/svg/appstore.svg" alt="" class="img-fluid" /></a>
-                            <a href="#"><img src="./assets/images/svg/playstore.svg" alt="" class="img-fluid" /></a>
-                        </div> -->
                     </div>
                 </div>
             </div>
-            <div
-                class="row align-items-center g-0 border-top border-gray-800 pt-3 flex-column gap-1 flex-lg-row gap-lg-0">
+            <div class="row align-items-center g-0 border-top py-2 mt-6">
                 <!-- Desc -->
-                <div class="col-lg-6 col-12 text-center text-md-start">
-                    <span>
-                        ©
-                        <span id="copyright">
-                            <script>
-                            document.getElementById("copyright").appendChild(document.createTextNode(new Date()
-                                .getFullYear()));
-                            </script>
-                        </span>
-                        Digital Reload Indonesia
-                    </span>
+                <div class="col-md-10 col-12">
+                    <div class="d-lg-flex align-items-center">
+                        <div class="me-4">
+                            <span>
+                                ©
+                                <span id="copyright5">
+                                    <script>
+                                    document.getElementById("copyright5").appendChild(document.createTextNode(new Date()
+                                        .getFullYear()));
+                                    </script>
+                                </span>
+                                eduhost.my.id
+                            </span>
+                        </div>
+                        <div>
+                            <nav class="nav nav-footer">
+                                <a class="nav-link ps-0" href="#">Privacy Policy</a>
+                                <a class="nav-link" href="#">Terms of Use</a>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-                <!-- Links -->
-                <div class="col-12 col-lg-6">
-                    <nav class="nav nav-footer justify-content-center justify-content-md-start justify-content-lg-end">
-                        <a class="nav-link active" href="#!">Terms of use</a>
-                        <a class="nav-link" href="#!">Privacy policy</a>
-                    </nav>
-                </div>
+
+
             </div>
         </div>
     </footer>
@@ -216,7 +204,7 @@
     <script src="<?php echo base_url() ?>assets/libs/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="<?php echo base_url() ?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>assets/libs/simplebar/dist/simplebar.min.js"></script>
-
+    <script src="https://kit.fontawesome.com/a97c599547.js" crossorigin="anonymous"></script>
     <!-- Theme JS -->
     <script src="<?php echo base_url() ?>assets/js/theme.min.js"></script>
 

@@ -13,12 +13,20 @@ class Course_m extends CI_Model
         return $this->db->query($q)->result();
     }
 
+    public function get_categories()
+    {
+        return $this->db->get('tm_course_category')->result();
+    }
+
     public function get_course_list()
     {
-        $q = "SELECT c.id,c.user_id,c.course_banner,c.course_title,
-                c.course_price,c.course_discount,c.course_status,c.course_category,
-                c.course_level,u.fullname FROM tm_course AS c 
-                INNER JOIN users AS u ON u.id = c.user_id";
+        // Perhatikan penambahan 'c.category_id' di dalam SELECT
+        $q = "SELECT c.id, c.user_id, c.category_id, c.course_banner, c.course_title,
+            c.course_price, c.course_discount, c.course_status, 
+            c.course_level, u.fullname, tm_clevel.level_name 
+            FROM tm_course AS c 
+            INNER JOIN users AS u ON u.id = c.user_id
+            INNER JOIN tm_course_level AS tm_clevel ON tm_clevel.id = c.course_level";
         return $this->db->query($q)->result();
     }
     public function count_course()
@@ -154,5 +162,14 @@ class Course_m extends CI_Model
     {
         $this->db->where('payment_status', 2);
         return $this->db->get('purchases')->num_rows();
+    }
+
+    /**
+     * Blog
+     */
+
+    public function blog_add($data)
+    {
+        $this->db->insert('blogs', $data);
     }
 }

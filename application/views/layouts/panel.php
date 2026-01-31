@@ -23,6 +23,7 @@
     <link href="<?php echo base_url() ?>assets/libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link href="<?php echo base_url() ?>assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <!-- Theme CSS -->
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
         rel="stylesheet">
@@ -177,6 +178,21 @@
 
                                     </ul>
                                     <?php endif; ?>
+
+                                    <?php if ($this->session->userdata('role_id') == 1): ?>
+                                    <!-- Student Menus -->
+                                    <span class="navbar-header">Blog</span>
+                                    <ul class="list-unstyled ms-n2 mb-0">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('course/blog') ?>">
+                                                <i class="fe fe-list nav-icon"></i>
+                                                Blog
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <?php endif; ?>
                                     <!-- Navbar header -->
                                     <span class="navbar-header">Account Settings</span>
                                     <ul class="list-unstyled ms-n2 mb-0">
@@ -252,7 +268,9 @@
     <script src="<?php echo base_url() ?>assets/libs/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="<?php echo base_url() ?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>assets/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <!-- Theme JS -->
     <script src="<?php echo base_url() ?>assets/js/theme.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
@@ -267,6 +285,7 @@
         $('#statistic-table').DataTable();
         $('#course-list').DataTable();
         $('#table-pending').DataTable();
+        $('#blog-list').DataTable();
         $('#detail_kursus').DataTable({
             "order": [
                 [1, 'desc']
@@ -291,6 +310,37 @@
 
         // Men-submit form
         $('form').submit();
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const editors = {};
+
+        // campaign
+        if (document.querySelector('#editor-blog')) {
+            editors.editorCampaignBlog = new Quill('#editor-blog', {
+                modules: {
+                    toolbar: '#toolbar-container',
+                    syntax: true,
+                },
+                theme: 'snow',
+                placeholder: 'Tulis deskripsi blog...'
+            });
+
+        }
+
+
+        document.querySelector('form')?.addEventListener('submit', function() {
+
+            if (editors.editorCampaignBlog) document.querySelector('#konten-blog').value = editors
+                .editorCampaignBlog
+                .root
+                .innerHTML;
+
+
+
+        });
     });
     </script>
 

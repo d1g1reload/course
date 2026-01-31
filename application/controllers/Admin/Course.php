@@ -195,4 +195,67 @@ class Course extends CI_Controller
             redirect('courselist');
         }
     }
+
+    /**
+     * Blog Section
+     */
+
+    public function blog_list()
+    {
+        $data['content_admin'] = "app/backend/blog/list";
+        $this->load->view('layouts/panel', $data);
+    }
+
+    public function blog_add()
+    {
+        $data['content_admin'] = "app/backend/blog/create";
+        $this->load->view('layouts/panel', $data);
+    }
+
+    public function blog_submit()
+    {
+
+        $category = $this->input->post('blog_category', true);
+        $title = $this->input->post('blog_title', true);
+        $description = $this->input->post('blog_description', false);
+        $created = date('Y-m-d h:i:s');
+
+        if ($_FILES and $_FILES['blog_image']['name']) {
+            $config = array(
+                'upload_path' => './assets/blogimage/',
+                'allowed_types' => 'jpeg|jpg|png|JPG|PNG|JPEG',
+                'max_size' => 10000,
+                'encrypt_name' => true,
+                'remove_spaces' => true
+            );
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('blog_image')) {
+                $error = $this->upload->display_errors();
+                $this->session->set_flashdata('error', $error);
+                redirect('course/blog');
+            } else {
+
+                $file = $this->upload->data();
+                $product_blog = array(
+                    'blog_image'        => $file['file_name'],
+                    'blog_category'     => $category,
+                    'blog_title'        => $title,
+                    'blog_description'  => $description,
+                    'blog_date'         => $created,
+
+                );
+
+                if ($product_blog) {
+                    $this->Course_m->blog_add($product_blog);
+                    $this->session->set_flashdata('success', 'Create Blog Success.');
+                    redirect('course/blog');
+                } else {
+
+                    $this->session->set_flashdata('error', 'Create Blog Failed.');
+                    redirect('course/blog');
+                }
+            }
+        }
+    }
 }

@@ -55,6 +55,8 @@ $route['404_override'] = 'Errors/show_404';
 $route['translate_uri_dashes'] = false;
 
 $route['page/about'] = 'Main/about';
+$route['page/course'] = 'Main/course_list';
+$route['page/help'] = 'Main/help';
 $route['page/otp'] = 'Main/otp';
 $route['post/register'] = 'Main/register';
 $route['verfiy/otp'] = 'Main/verify_otp';

@@ -4,10 +4,19 @@ class Main extends CI_Controller
 {
     public function index()
     {
-
+        $data['categories'] = $this->Course_m->get_categories();
         $data['course'] = $this->Course_m->get_course_list();
         $data['total_course'] = $this->Course_m->count_course();
         $data['content'] = "app/main";
+        $this->load->view('layouts/main', $data);
+    }
+
+    public function course_list()
+    {
+        $data['categories'] = $this->Course_m->get_categories();
+        $data['course'] = $this->Course_m->get_course_list();
+        $data['total_course'] = $this->Course_m->count_course();
+        $data['content'] = "app/course/course_list";
         $this->load->view('layouts/main', $data);
     }
 
@@ -15,6 +24,13 @@ class Main extends CI_Controller
     {
 
         $data['content'] = "app/about/about";
+        $this->load->view('layouts/main', $data);
+    }
+
+    public function help()
+    {
+
+        $data['content'] = "app/account/help";
         $this->load->view('layouts/main', $data);
     }
 
