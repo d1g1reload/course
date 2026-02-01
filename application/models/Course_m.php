@@ -99,11 +99,86 @@ class Course_m extends CI_Model
         $this->db->where('course_id', $id)->delete('tm_course_detail');
     }
 
-    public function course_add_detail($course_data)
+    public function course_add_detail($content_data)
     {
-        $this->db->insert('tm_course_detail', $course_data);
+        $this->db->insert('tm_course_detail', $content_data);
+
+        // Mengembalikan TRUE jika ada baris yang berhasil diinsert
+        return $this->db->affected_rows() > 0;
     }
 
+    // Di file models/Course_m.php
+
+    public function get_next_order($course_id)
+    {
+        // Cari angka terbesar di kolom course_order
+        $this->db->select_max('course_order');
+        $this->db->where('course_id', $course_id);
+        $query = $this->db->get('tm_course_detail');
+        $result = $query->row();
+
+        // Jika belum ada data, mulai dari 1. Jika ada, ambil max + 1
+        return (int)$result->course_order + 1;
+    }
+
+    public function course_detail_update($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('tm_course_detail', $data);
+        return $this->db->affected_rows() >= 0;
+    }
+    // Di file models/Course_m.php
+
+    public function reorder_content($course_id, $old_order, $new_order)
+    {
+        if ($new_order < $old_order) {
+            // KASUS 1: PINDAH KE ATAS (Misal: No 5 jadi No 2)
+            // Logika: Geser materi yang ada di posisi 2, 3, 4 MUNDUR (+1) jadi 3, 4, 5.
+            // Agar posisi 2 kosong buat kita.
+
+            $this->db->set('course_order', 'course_order + 1', false);
+            $this->db->where('course_id', $course_id);
+            $this->db->where('course_order >=', $new_order);
+            $this->db->where('course_order <', $old_order);
+            $this->db->update('tm_course_detail');
+
+        } elseif ($new_order > $old_order) {
+            // KASUS 2: PINDAH KE BAWAH (Misal: No 2 jadi No 5)
+            // Logika: Geser materi yang ada di posisi 3, 4, 5 MAJU (-1) jadi 2, 3, 4.
+            // Ini menutup lubang bekas nomor 2 yang kita tinggalkan.
+
+            $this->db->set('course_order', 'course_order - 1', false);
+            $this->db->where('course_id', $course_id);
+            $this->db->where('course_order >', $old_order);
+            $this->db->where('course_order <=', $new_order);
+            $this->db->update('tm_course_detail');
+        }
+    }
+
+    public function normalize_order($course_id)
+    {
+        // Ambil semua data urutkan berdasarkan order yang sekarang
+        $this->db->order_by('course_order', 'ASC');
+        $this->db->where('course_id', $course_id);
+        $items = $this->db->get('tm_course_detail')->result();
+
+        $no = 1;
+        foreach ($items as $item) {
+            // Update ulang nomor urutnya agar rapi berurutan
+            $this->db->where('id', $item->id);
+            $this->db->update('tm_course_detail', ['course_order' => $no]);
+            $no++;
+        }
+    }
+
+    public function delete_course_detail($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tm_course_detail');
+
+        // Mengembalikan TRUE jika berhasil hapus
+        return $this->db->affected_rows() > 0;
+    }
 
     public function is_purchase($user_id, $course_id)
     {

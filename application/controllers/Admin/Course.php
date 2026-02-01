@@ -102,7 +102,46 @@ class Course extends CI_Controller
         $this->load->view('layouts/panel', $data);
     }
 
+    // FILE: controllers/Admin/Course.php
+
     public function preview()
+    {
+        $this->load->library('Course_lib');
+
+        $course_id  = $this->input->post('course_id');
+        $video_code = $this->input->post('video_val');
+
+        // --- PERBAIKAN: JANGAN AMBIL DARI POST, TAPI HITUNG DARI DB ---
+        // $order_value = $this->input->post('order_value'); // Hapus atau abaikan baris ini
+
+        // Panggil fungsi model yang baru kita buat
+        $order_value = $this->Course_m->get_next_order($course_id);
+        // -------------------------------------------------------------
+
+        $video = $this->course_lib->youtube_api($video_code);
+
+        // Parse data API (Sesuai kode Anda sebelumnya)
+        $json   = json_encode($video, JSON_UNESCAPED_SLASHES);
+        $decode = json_decode($json);
+
+        if (!isset($decode->id) || $video_code != $decode->id) {
+            $this->session->set_flashdata('failed', 'Kode video youtube salah atau tidak ditemukan.');
+            redirect('admin/page/course/detail/' . $course_id);
+        } else {
+            $data['youtube_code']     = $decode->id;
+            $data['youtube_title']    = $decode->snippet->title;
+            $data['youtube_duration'] = $this->course_lib->convert_time_youtube($decode->contentDetails->duration);
+            $data['course_id']        = $course_id;
+
+            // Kirim urutan yang sudah dihitung akurat dari DB
+            $data['course_order']     = $order_value;
+
+            $data['content_admin']    = "app/backend/course/preview";
+            $this->load->view('layouts/panel', $data);
+        }
+    }
+
+    public function preview_detail()
     {
 
         $this->load->library('Course_lib');
@@ -110,6 +149,7 @@ class Course extends CI_Controller
         $course_id = $this->input->post('course_id', true);
         $video_code = $this->input->post('video_val', true);
         $order_value = $this->input->post('order_value');
+        $detail_id = $this->input->post('detail_id');
 
         $video = $this->course_lib->youtube_api($video_code);
         $json = json_encode($video, JSON_UNESCAPED_SLASHES);
@@ -124,39 +164,118 @@ class Course extends CI_Controller
             $data['youtube_duration'] = $this->course_lib->convert_time_youtube($decode->contentDetails->duration);
             $data['course_id'] = $course_id;
             $data['course_order'] = $order_value;
-            $data['content_admin'] = "app/backend/course/preview";
+            $data['detail_id'] = $detail_id;
+            $data['content_admin'] = "app/backend/course/preview_update";
             $this->load->view('layouts/panel', $data);
         }
     }
 
-    public function course_submit()
+
+    public function course_detail_update()
     {
+        // 1. Ambil Input
+        $detail_id              = $this->input->post('detail_id', true);
         $content_id             = $this->input->post('course_id', true);
-        $course_order           = $this->input->post('course_order');
+        $new_order              = $this->input->post('course_order');
+
         $content_title          = $this->input->post('course_detail_title', true);
         $content_duration       = $this->input->post('course_detail_duration', true);
         $content_video_code     = $this->input->post('course_detail_video_code', true);
-        $content_description    = $this->input->post('course_detail_description', true);
-        $content_created        = date('Y-m-d h:i:s');
+        $content_description    = $this->input->post('course_detail_description', false);
+        $content_created        = date('Y-m-d H:i:s');
 
+        // --- LOGIKA REORDERING ---
+        // Kita tetap pakai reorder agar posisi target tercapai dulu
+        $old_data = $this->db->get_where('tm_course_detail', ['id' => $detail_id])->row();
+
+        if ($old_data) {
+            $old_order = $old_data->course_order;
+            if ($new_order != $old_order) {
+                $this->Course_m->reorder_content($content_id, $old_order, $new_order);
+            }
+        }
+
+        // 2. SIMPAN DATA UTAMA
         $content_data = array(
-            'course_id' => $content_id,
-            'course_order' => $course_order,
-            'course_detail_title' => $content_title,
-            'course_detail_duration' => $content_duration,
-            'course_detail_video_code' => $content_video_code,
+            'course_id'                 => $content_id,
+            'course_order'              => $new_order,
+            'course_detail_title'       => $content_title,
+            'course_detail_duration'    => $content_duration,
+            'course_detail_video_code'  => $content_video_code,
             'course_detail_description' => $content_description,
-            'course_detail_created' => $content_created,
+            'course_detail_created'     => $content_created,
         );
 
-        if ($content_data) {
-            $this->Course_m->course_add_detail($content_data);
-            $this->session->set_flashdata('success', 'Create Content Detail Success.');
-            redirect('admin/page/course/detail/' . $content_id);
+        $update = $this->Course_m->course_detail_update($detail_id, $content_data);
+
+        // --- LOGIKA PENYEMBUH (AUTO FIX) ---
+        // PENTING: Jalankan ini setelah update agar urutan 7, 5, 4 kembali jadi 1, 2, 3..
+        $this->Course_m->normalize_order($content_id);
+        // -----------------------------------
+
+        if ($update) {
+            $this->session->set_flashdata('success', 'Materi berhasil diupdate dan urutan dirapikan.');
         } else {
-            $this->session->set_flashdata('error', 'Create Content Detail Failed.');
-            redirect('admin/page/course/detail/' . $content_id);
+            $this->session->set_flashdata('error', 'Gagal mengupdate materi.');
         }
+
+        redirect('admin/page/course/detail/' . $content_id);
+    }
+
+    public function delete_detail($detail_id, $course_id)
+    {
+        // 1. Lakukan Penghapusan
+        $delete = $this->Course_m->delete_course_detail($detail_id);
+
+        if ($delete) {
+            // 2. PENTING: Rapikan urutan (Self-Healing)
+            // Karena ada yang dihapus, pasti ada nomor yang bolong.
+            // Fungsi ini akan menambal celah tersebut.
+            $this->Course_m->normalize_order($course_id);
+
+            $this->session->set_flashdata('success', 'Materi berhasil dihapus dan urutan otomatis dirapikan.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menghapus materi.');
+        }
+
+        // Redirect kembali ke halaman detail kursus
+        redirect('admin/page/course/detail/' . $course_id);
+    }
+
+    public function course_submit()
+    {
+        // Ambil Input
+        $content_id             = $this->input->post('course_id', true);
+        $course_order           = $this->input->post('course_order'); // Ini ambil angka dari View Preview
+        $content_title          = $this->input->post('course_detail_title', true);
+        $content_duration       = $this->input->post('course_detail_duration', true);
+        $content_video_code     = $this->input->post('course_detail_video_code', true);
+
+        // PERBAIKAN 1: Gunakan FALSE agar tag HTML dari Summernote tidak hilang
+        $content_description    = $this->input->post('course_detail_description', false);
+
+        $content_created        = date('Y-m-d H:i:s'); // Format jam H besar (24 jam)
+
+        $content_data = array(
+            'course_id'                 => $content_id,
+            'course_order'              => $course_order,
+            'course_detail_title'       => $content_title,
+            'course_detail_duration'    => $content_duration,
+            'course_detail_video_code'  => $content_video_code,
+            'course_detail_description' => $content_description,
+            'course_detail_created'     => $content_created,
+        );
+
+        // PERBAIKAN 2: Panggil Model dan simpan statusnya (True/False)
+        $insert = $this->Course_m->course_add_detail($content_data);
+
+        if ($insert) {
+            $this->session->set_flashdata('success', 'Berhasil menambahkan materi baru.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menambahkan materi. Silakan coba lagi.');
+        }
+
+        redirect('admin/page/course/detail/' . $content_id);
     }
 
 

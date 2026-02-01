@@ -107,6 +107,10 @@ $route['course/blog'] = 'Admin/Course/blog_list';
 $route['course/blog/add'] = 'Admin/Course/blog_add';
 $route['course/blog/submit'] = 'Admin/Course/blog_submit';
 
+$route['course/preview/update'] = 'Admin/Course/preview_detail';
+$route['course/content/update/submit'] = 'Admin/Course/course_detail_update';
+// Route Hapus Materi: course/content/delete/ID_MATERI/ID_KURSUS
+$route['course/content/delete/(:any)/(:any)'] = 'Admin/Course/delete_detail/$1/$2';
 /**
  * purchase
  */
