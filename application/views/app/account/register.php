@@ -50,8 +50,8 @@
                         <div class="mb-3">
                             <label for="roles" class="form-label">Tipe User</label>
                             <select name="role_id" class="form-control">
+                                <option value="3">Member</option>
                                 <option value="2">Instruktur</option>
-                                <option value="3">Student</option>
                             </select>
                         </div>
 
